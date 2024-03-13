@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="/img/Logo for Favicon.svg" />
+    <link rel="stylesheet" href="/css/contact.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/nav.css" />
+
+    <script src="/js/script.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/storage.js"></script>
+    <script src="/js/contact_templates.js"></script>
+    <script src="/js/contact.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/signup.js"></script>
+  </head>
+
+  <body onload="contactInit()">
+    <div id="add-contact-filter" class="contact-d-none bg-filter"></div>
+    <div id="add-contact-card" class="contact-d-none add-contact-card">
+      <div class="add-contact-card-left">
+        <div class="add-contact-mobile-closer" onclick="closeAddContact()">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="iconoir:cancel">
+            <path id="Vector" d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            </svg>          
+          </div>
+        <div class="add-contact-card-imgtext">
+
+      <img class="add-contact-logo" src="img/logo_nav_desktop.svg">
+      <br>
+      <h1>Add Contact</h1>
+      <p>Tasks are better with a Team!</p>
+      <div class="add-contact-card-spacer"></div>
+    </div>
+  </div>
+      <div class="add-contact-card-right">
+      <div class="add-contact-person">
+        <img class="add-contact-person-img" src="/img/contact/person.svg">
+      </div>
+      <form class="contact-inputs-container" onsubmit="addContact(); return false">
+        <input
+        type="text"
+        class="contact-inputs"
+        id="contact-input-name"
+        placeholder="Name"
+        minlength="2"
+        required
+      />
+      <input
+        type="email"
+        class="contact-inputs"
+        id="contact-input-email"
+        placeholder="E-mail"
+        required
+      />    
+      <input
+      type="number"
+      class="contact-inputs"
+      id="contact-input-phone"
+      placeholder="Phone"
+      required
+    />
+    <div class="add-contact-button">
+      <button id="contact-cancel-button" type="button" onclick="closeAddContact()">Cancel <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="iconoir:cancel">
+        <path id="Vector" d="M12.001 12.5001L17.244 17.7431M6.758 17.7431L12.001 12.5001L6.758 17.7431ZM17.244 7.25708L12 12.5001L17.244 7.25708ZM12 12.5001L6.758 7.25708L12 12.5001Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        </svg></button>
+      <button id="contact-create-button" type="submit">Create contact <img src="/img/contact/check.svg"></button>
+    </div>
+  </form>
+      </div>
+    </div>
+
+    <div id="edit-contact-filter" class="contact-d-none bg-filter"></div>
+    <div id="edit-contact-card" class="contact-d-none add-contact-card">
+      <div class="add-contact-card-left">
+        <div class="add-contact-card-imgtext">
+      <img class="add-contact-logo" src="img/logo_nav_desktop.svg">
+      <br>
+      <h1>Edit Contact</h1>
+      <div class="add-contact-card-spacer"></div>
+    </div>
+  </div>
+      <div class="add-contact-card-right">
+      <div id="edit-contact-circle" class="add-contact-person">
+      </div>
+      <form id="edit-contact-form" class="contact-inputs-container" onsubmit="editContact(); return false;">
+        <input
+        type="text"
+        class="contact-inputs"
+        id="contact-edit-name"
+        placeholder="Name"
+        minlength="2"
+      />
+      <input
+        type="email"
+        class="contact-inputs"
+        id="contact-edit-email"
+        placeholder="E-mail"
+      />    
+      <input
+      type="number"
+      class="contact-inputs"
+      id="contact-edit-phone"
+      placeholder="Phone"
+    />
+    <div class="add-contact-button">
+      <button id="contact-cancel-button" type="button" onclick="deleteContact(c)">Delete</button>
+      <button id="contact-create-button" type="submit">Save <img src="/img/contact/check.svg"></button>
+    </div>
+  </form>
+      </div>
+    </div>
+
+    <div w3-include-html="./templates/desktop/nav_desktop.html"></div>
+    <div class="main-container-body">
+      <div w3-include-html="./templates/desktop/header_desktop.html"></div>
+      <div class="contact-container">
+        <div class="contact-container-left" id="contact-container-left">
+        <button onclick="openAddContact()" class="add-contact">Add new contact<img src="img/contact/add_contact.svg"></button>
+        <div class="contact-list" id="contact-list"></div>
+        <button onclick="openAddContact()" class="mobile-add-contact">
+          <img class="mobile-add-contact-img" src="img/contact/add_contact.svg" alt="Add-Contact">
+        </button>
+      </div>
+        <div class="contact-container-right" id="contact-container-right">
+          <div class="contact-container-right-header">
+            <h1>Contacts</h1>
+            <div class="contact-spacer1"></div>
+            <p>Better with a Team</p>
+            <div class="contact-spacer2"></div>
+          </div>
+          <div id="big-contact-card" class="big-contact-card">
+          </div>
+        </div>
+     </div>
+  </body>
+</html>

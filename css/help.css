@@ -1,0 +1,35 @@
+.help-content-container {
+  margin-left: 230px;
+  margin-top: 105px;
+  padding-left: 50px;
+  padding-right: 40px;
+  flex-wrap: wrap;
+}
+
+.help-content-container h1 {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-size: 61px;
+}
+
+.help-content-container h2 {
+  margin-top: 35px;
+  margin-bottom: 15px;
+  font-size: 27px;
+}
+
+@media (max-width: 850px) {
+  .help-content-container {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    overflow-y: auto;
+    height: calc(100vh - 160px);
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 20px;
+  }
+
+  .help-content-container h1 {
+    font-size: 40px;
+  }
+}

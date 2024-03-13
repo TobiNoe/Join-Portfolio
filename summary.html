@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/img/Logo for Favicon.svg" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/summary.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/nav.css" />
+    <script src="./js/storage.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/summary.js"></script>
+    <script src="./js/header.js"></script>
+
+    <title>Join - Summary</title>
+  </head>
+
+  <body onload="init(); summaryInit()">
+    <div class="main-container">
+      <div w3-include-html="./templates/desktop/nav_desktop.html"></div>
+      <div class="index-body">
+        <div w3-include-html="./templates/desktop/header_desktop.html"></div>
+        <div class="summary-container">
+          <div class="summary-headline">
+            <h2>JOIN 360</h2>
+            <div class="summary-seperator">&nbsp</div>
+            <h3>Key Matrics at a Glace</h3>
+            <div class="summary-seperator-mobil">&nbsp</div>
+          </div>
+
+          <div class="summary-wrapper">
+            <div class="summary-container-inside">
+              <div
+                class="summary-container-first-row d-flex-ai-center-jc-center"
+              >
+                <a
+                  onmouseover="summaryChangeImage('edit')"
+                  onmouseout="summaryChangeImageBack('edit')"
+                  href="board.html"
+                  ><img
+                    id="summary_images_edit"
+                    class="summary-images"
+                    src="./img/summary/edit_blue.svg"
+                  />
+                  <div class="summary-sum d-flex-ai-center-jc-center">
+                    <span id="summary_todo_sum"></span>
+
+                    <span class="summary-small">todo</span>
+                  </div>
+                </a>
+                <a
+                  onmouseover="summaryChangeImage('check')"
+                  onmouseout="summaryChangeImageBack('check')"
+                  href="board.html"
+                  ><img
+                    id="summary_images_check"
+                    class="summary-images"
+                    src="./img/summary/check_blue.svg"
+                  />
+                  <div class="summary-sum">
+                    <span id="summary_done_sum"></span>
+                    <span class="summary-small">Done</span>
+                  </div></a
+                >
+              </div>
+              <div
+                class="d-flex-ai-center-jc-center summary-container-second-row"
+              >
+                <a class="d-flex-ai-center-jc-center" href="board.html"
+                  ><img
+                    class="summary-images"
+                    src="./img/summary/urgent_orange.svg"
+                  />
+                  <div class="summary-urgent-counter">
+                    <span id="summary_urgent_sum"></span>
+                    <span class="summary-small">urgent</span>
+                  </div>
+                  <div class="summary-seperator-second-container"></div>
+                  <div class="summary-urgent-date">
+                    <span id="summary_urgent_date"></span>
+                    <span class="summary-small">Upcoming Deadline</span>
+                  </div></a
+                >
+              </div>
+              <div class="summary-container-third-row">
+                <a href="board.html">
+                  <span id="summary_number_of_tasks"></span
+                  ><span class="summary-small">Tasks in Board</span>
+                </a>
+                <a href="board.html">
+                  <span id="summary_progress_sum"></span>
+                  <span class="summary-small"
+                    >Tasks in<br />
+                    Progress</span
+                  >
+                </a>
+                <a href="board.html">
+                  <span id="summary_feedback_sum"></span>
+                  <span class="summary-small"
+                    >Awaiting<br />
+                    Feedback</span
+                  >
+                </a>
+              </div>
+            </div>
+            <div class="summary-welcome">
+              <span id="greeting"></span><br />
+              <span class="summary-welcome-name" id="welcome_name"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="summary-welcome-mobile">
+      <span id="greeting_mobile"></span><br />
+      <span class="summary-welcome-name-mobile" id="welcome_name_mobile"></span>
+    </div>
+  </body>
+</html>

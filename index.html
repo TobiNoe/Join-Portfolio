@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="/img/Logo for Favicon.svg" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <script src="/js/script.js"></script>
+    <script src="/js/storage.js"></script>
+    <script src="/js/login.js"></script>
+  </head>
+
+  <body onload="loginInit(), startAnimation()">
+    <div class="background-fade"></div>
+    <div class="main-container">
+      <div class="main-container-body login-centering">
+        <img id="logo" class="login-img" src="img/login/login_icon.svg" />
+        <div class="login-container">
+          <h1>Log in</h1>
+          <div class="login-spacer"></div>
+
+          <form class="login-inputs-container" onsubmit="login(); return false">
+            <input
+              type="email"
+              class="login-inputs"
+              id="login-input-email"
+              placeholder="E-mail"
+              required
+            />
+            <input
+              type="password"
+              class="login-inputs"
+              id="input-password1"
+              placeholder="Password"
+              required
+              minlength="8"
+              pattern="^(?=.*[A-Za-z])(?=.*\d).+$"
+              title="Das Passwort muss mindestens 8 Zeichen lang sein und mindestens einen Buchstaben und eine Zahl enthalten."
+              />
+              <div id="password-visibility-toggle1" class="password-toggle" onclick="togglePasswordVisibility(`1`)"></div>
+            <div id="errorbox"></div>
+            <div class="button-and-text">
+              <label class="checkbox-container"><p>Remember me</p>
+                <input type="checkbox" class="remember-checkbox">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="login-buttons">
+              <button id="user-login-button">Log in</button>
+          </form>
+
+          <button id="guest-login-button" onclick="guestLogin()">
+            Guest Log in
+          </button>
+        </div>
+        </div>
+        <div class="signup-container">
+          <p>Not a Join user?</p>
+          <a href="signup.html"
+            ><button id="signup-button">Sign up</button></a>
+        </div>
+      </div>
+      <div class="login-legal">
+        <a target=”_blank” href="privacy_policy_out.html" class="login-legal-links">Privacy Policy</a>
+        <a target=”_blank” href="legal_notice_out.html" class="login-legal-links">Legal notice</a>
+      </div>
+    </div>
+  </body>
+</html>

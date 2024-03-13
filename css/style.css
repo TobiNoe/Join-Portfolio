@@ -1,0 +1,44 @@
+* {
+  font-family: "Inter";
+  margin: 0;
+  box-sizing: border-box;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  text-decoration: none;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 16px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 16px;
+  border: solid 1px white;
+}
+
+body {
+  background-color: #f6f7f8;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+}
+
+.main-container-body {
+  flex: 1;
+}
+
+@media (max-width: 550px) {
+  .main-container {
+    flex-direction: column-reverse;
+  }
+}

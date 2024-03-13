@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="icon" type="image/x-icon" href="/img/Logo for Favicon.svg">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/board_add_task.css">
+    <link rel="stylesheet" href="./css/board_edit_task.css">
+    <link rel="stylesheet" href="./css/board.css">
+    <script src="./js/script.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/header.js"></script>
+    <script src="./js/board_templates.js"></script>
+    <script src="./js/board_render.js"></script>
+    <script src="./js/board_add_task.js"></script>
+    <script src="./js/board_edit_task.js"></script>
+    <script src="./js/add_task_render.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/add_task2.js"></script>
+    <script src="./js/board.js"></script>
+</head>
+
+<body onload="boardInit()">
+
+    <div class="main-container">
+        <div w3-include-html="./templates/desktop/nav_desktop.html"></div>
+        <div class="main-container-body">
+            <div w3-include-html="./templates/desktop/header_desktop.html"></div>
+
+            <div class="board-main-container">
+                <div class="board-headline">
+                    <div class="board-headline-button">
+                        <span class="board-headline-text">Board</span>
+                        <button class="board-button-addTask-mobile"><img src="./img/board/add.svg" alt=""
+                                onclick="boardShowAddTask('todo')"></button>
+                    </div>
+                    <div class="board-headline-container-search-add">
+                        <div class="board-input-search-container">
+                            <input id="board_input_search_field" class="board-input-search" type="search"
+                                placeholder="Find Task" autocomplete="off">
+                            <div class="board-input-search-icons">
+                                <svg width="2" height="32" viewBox="0 0 2 32" fill="none" xmlns="./img/board/svg">
+                                    <path id="Vector 3" d="M1 0.5V31.5" stroke="#D1D1D1" />
+                                </svg>
+                                <svg class="board-input-search-icon" onclick="readInputSearch()" width="32" height="32"
+                                    viewBox="0 0 32 32" fill="none" xmlns="./img/board/svg">
+                                    <g id="search">
+                                        <mask id="mask0_129320_5742" style="mask-type:alpha" maskUnits="userSpaceOnUse"
+                                            x="0" y="0" width="32" height="32">
+                                            <rect id="Bounding box" width="32" height="32" fill="#D9D9D9" />
+                                        </mask>
+                                        <g mask="url(#mask0_129320_5742)">
+                                            <path id="search_2"
+                                                d="M13.7118 20.2137C11.8946 20.2137 10.3567 19.5843 9.098 18.3256C7.83931 17.0669 7.20996 15.529 7.20996 13.7118C7.20996 11.8946 7.83931 10.3567 9.098 9.098C10.3567 7.83931 11.8946 7.20996 13.7118 7.20996C15.529 7.20996 17.0669 7.83931 18.3256 9.098C19.5843 10.3567 20.2137 11.8946 20.2137 13.7118C20.2137 14.4454 20.097 15.1372 19.8636 15.7874C19.6302 16.4376 19.3134 17.0127 18.9133 17.5129L24.5149 23.1145C24.6983 23.2979 24.79 23.5313 24.79 23.8147C24.79 24.0981 24.6983 24.3315 24.5149 24.5149C24.3315 24.6983 24.0981 24.79 23.8147 24.79C23.5313 24.79 23.2979 24.6983 23.1145 24.5149L17.5129 18.9133C17.0127 19.3134 16.4376 19.6302 15.7874 19.8636C15.1372 20.097 14.4454 20.2137 13.7118 20.2137ZM13.7118 18.2131C14.9622 18.2131 16.025 17.7755 16.9002 16.9002C17.7755 16.025 18.2131 14.9622 18.2131 13.7118C18.2131 12.4615 17.7755 11.3987 16.9002 10.5234C16.025 9.64815 14.9622 9.21053 13.7118 9.21053C12.4615 9.21053 11.3987 9.64815 10.5234 10.5234C9.64815 11.3987 9.21053 12.4615 9.21053 13.7118C9.21053 14.9622 9.64815 16.025 10.5234 16.9002C11.3987 17.7755 12.4615 18.2131 13.7118 18.2131Z"
+                                                fill="#2A3647" />
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <button class="board-button-addTask" onclick="boardShowAddTask('todo')"><span
+                                class="board-text-addTask">Add task</span><img src="./img/board/add.svg"
+                                alt=""></button>
+                    </div>
+                </div>
+                <div class="board-task-main">
+
+                    <div id="board_task_category_todo_move" class="board-task-category">
+                        <div class="board-task-headline">
+                            <span class="board-add-task-headline">To do</span>
+                            <svg onclick="boardShowAddTask('todo')" class="board-add-task-category" width="10"
+                                height="11" viewBox="0 0 10 11" fill="color" xmlns="./img/board/svg">
+                                <g id="Capa 1">
+                                    <g id="Group 11">
+                                        <path id="Vector 13" d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2"
+                                            stroke-linecap="round" />
+                                        <path id="Vector 14" d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div id="board_task_category_todo"
+                            ondrop="boardDrop('todo'); boardRemoveBackgroundMoveTask('board_task_category_todo')"
+                            ondragleave="boardRemoveBackgroundMoveTask('board_task_category_todo')"
+                            ondragover="allowDrop(event); boardAddBackgroundMoveTask('board_task_category_todo')"
+                            class="board-task-container">
+                        </div>
+                    </div>
+                    <div id="board_task_category_progress_move" class="board-task-category">
+                        <div class="board-task-headline">
+                            <span class="board-add-task-headline">In progress</span>
+                            <svg onclick="boardShowAddTask('progress')" class="board-add-task-category" width="10"
+                                height="11" viewBox="0 0 10 11" fill="color" xmlns="./img/board/svg">
+                                <g id="Capa 1">
+                                    <g id="Group 11">
+                                        <path id="Vector 13" d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2"
+                                            stroke-linecap="round" />
+                                        <path id="Vector 14" d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div id="board_task_category_progress"
+                            ondrop="boardDrop('progress'); boardRemoveBackgroundMoveTask('board_task_category_progress')"
+                            ondragleave="boardRemoveBackgroundMoveTask('board_task_category_progress')"
+                            ondragover="allowDrop(event); boardAddBackgroundMoveTask('board_task_category_progress')"
+                            class="board-task-container">
+                        </div>
+                    </div>
+                    <div id="board_task_category_feedback_move" class="board-task-category">
+                        <div class="board-task-headline">
+                            <span class="board-add-task-headline">Await feedback</span>
+                            <svg onclick="boardShowAddTask('feedback')" class="board-add-task-category" width="10"
+                                height="11" viewBox="0 0 10 11" fill="color" xmlns="./img/board/svg">
+                                <g id="Capa 1">
+                                    <g id="Group 11">
+                                        <path id="Vector 13" d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2"
+                                            stroke-linecap="round" />
+                                        <path id="Vector 14" d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div id="board_task_category_feedback"
+                            ondrop="boardDrop('feedback'); boardRemoveBackgroundMoveTask('board_task_category_feedback')"
+                            ondragleave="boardRemoveBackgroundMoveTask('board_task_category_feedback')"
+                            ondragover="allowDrop(event); boardAddBackgroundMoveTask('board_task_category_feedback')"
+                            class="board-task-container">
+                        </div>
+                    </div>
+                    <div id="board_task_category_done_move" class="board-task-category">
+                        <div class="board-task-headline">
+                            <span class="board-add-task-headline">Done</span>
+                        </div>
+                        <div id="board_task_category_done"
+                            ondrop="boardDrop('done'); boardRemoveBackgroundMoveTask('board_task_category_done')"
+                            ondragleave="boardRemoveBackgroundMoveTask('board_task_category_done')"
+                            ondragover="allowDrop(event); boardAddBackgroundMoveTask('board_task_category_done')"
+                            class="board-task-container">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------------------------- Section for show task detail Card ---------------------------------------------------------------------------->
+    <div class="board-task-detail-main d-none jc-center ai-center">
+        <div id="board_task_detail_card" class="board-task-detail-card d-flex flex-d-col"></div>
+    </div>
+    <!-------------------------------------------------- Section for show add task Card ---------------------------------------------------------------------------->
+    <div id="board_task_add_task_main" class="board-task-add-task-main d-none jc-center ai-center">
+        <div id="board_add_task_div" class="board-task-add-task">
+            <div class="add-task-container">
+                <div class="add-task-header-container">
+                    <h1 class="add-task-headline">Add Task</h1>
+                    <div class="board-add-task-close" onclick="boardCloseAddTask()">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.99999 8.40005L2.09999 13.3C1.91665 13.4834 1.68332 13.575 1.39999 13.575C1.11665 13.575 0.883321 13.4834 0.699988 13.3C0.516654 13.1167 0.424988 12.8834 0.424988 12.6C0.424988 12.3167 0.516654 12.0834 0.699988 11.9L5.59999 7.00005L0.699988 2.10005C0.516654 1.91672 0.424988 1.68338 0.424988 1.40005C0.424988 1.11672 0.516654 0.883382 0.699988 0.700049C0.883321 0.516715 1.11665 0.425049 1.39999 0.425049C1.68332 0.425049 1.91665 0.516715 2.09999 0.700049L6.99999 5.60005L11.9 0.700049C12.0833 0.516715 12.3167 0.425049 12.6 0.425049C12.8833 0.425049 13.1167 0.516715 13.3 0.700049C13.4833 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4833 1.91672 13.3 2.10005L8.39999 7.00005L13.3 11.9C13.4833 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4833 13.1167 13.3 13.3C13.1167 13.4834 12.8833 13.575 12.6 13.575C12.3167 13.575 12.0833 13.4834 11.9 13.3L6.99999 8.40005Z"
+                                fill="#2A3647" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="add-task-content d-flex jc-center">
+                    <div class="add-task-container-left">
+                        <form id="board_form_add_task" onsubmit="addTaskToVar(boardTaskStatus); return false;">
+                            <h3>Title<span class="required-star">*</span></h3>
+                            <label for="title" class="add-task-label" id="add_task_label_title">
+                                <input type="text" name="title" class="add-task-title add-task-blue-border"
+                                    id="add_task_title" minlength="3" maxlength="20" placeholder="Enter a Title"
+                                    required onkeyup="addTaskCheckForm()" onfocus="addTaskShowMsg('title')"
+                                    oninput="removeRedBorder('title')">
+                            </label>
+
+                            <div class="d-none extra-small" id="add_task_mistake_title">This field is required</div>
+
+                            <h3 class="m-top-40">Description</h3>
+                            <label for="description" class="add-task-label m-bottom-40">
+                                <textarea name="description" id="add_task_description" placeholder="Enter a Description"
+                                    class="add-task-description add-task-blue-border"></textarea>
+                            </label>
+
+                            <h3>Assigned to:</h3>
+                            <label for="assigned" class="add-task-label bgC-white" onclick="addTaskSearchName()">
+                                <input type="text" name="assigned" id="add_task_assigned_to"
+                                    class="add-task-title add-task-assigned-to" placeholder="Choose contacts"
+                                    autocomplete="off" onkeyup="addTaskSearchName()" onclick="addTaskSearchName()">
+                                <img src="img/add_task/arrow_down.svg" onclick="addTaskSearchName()"
+                                    class="cursor-pointer" id="assigned_to_arrow_down">
+                                <img src="img/add_task/arrow_up.svg" onclick="addTaskCloseContextMenuAssignedTo()"
+                                    class="d-none cursor-pointer" id="assigned_to_arrow_up">
+                            </label>
+
+                            <div class="d-none add-task-select-field-container" id="add_task_select_user_box"></div>
+                            <div class="m-top-20 assignedToOutput" id="outputSelectedContacts"></div>
+                    </div>
+
+                    <div class="add-task-seperator"></div>
+
+                    <div id="rightContainer" class="add-task-container-right">
+
+                        <h3>Due date<span class="required-star">*</span></h3>
+                        <label for="dueDate" class="add-task-label" id="add_task_label_dueDate">
+                            <input type="date" name="dueDate" class="add-task-due-date add-task-blue-border"
+                                id="add_task_due_date" required
+                                onchange="addTaskCheckForm(); removeRedBorder('dueDate')"
+                                onfocus="addTaskShowMsg('dueDate')">
+                        </label>
+
+                        <div class="d-none extra-small" id="add_task_mistake_dueDate">This field is required</div>
+
+                        <h3 class="m-top-40">Prio</h3>
+                        <div class="add-task-prio">
+                            <div id="add_task_prio_high" class="add-task-prio-high"
+                                onclick="addTaskSelectedPriority('high')">Urgent<img id="add_task_img_prio_high"
+                                    src="./img/add_task/add_task_prio_high.svg"></div>
+                            <div id="add_task_prio_medium" class="add-task-prio-medium"
+                                onclick="addTaskSelectedPriority('medium')">Medium<img id="add_task_img_prio_medium"
+                                    src="./img/add_task/add_task_prio_medium.svg"></div>
+                            <div id="add_task_prio_low" class="add-task-prio-low"
+                                onclick="addTaskSelectedPriority('low')">Low<img id="add_task_img_prio_low"
+                                    src="./img/add_task/add_task_prio_low.svg"></div>
+                        </div>
+
+                        <h3>Category<span class="required-star">*</span></h3>
+                        <label for="category" class="add-task-label bgC-white" id="add_task_label_category">
+                            <div class="add-task-category-input" id="add_task_category"
+                                onclick="addTaskOpenContextMenuCategory(); addTaskShowMsg('category'); addTaskCheckForm()">
+                                Select Task category</div>
+                        </label>
+
+                        <div class="d-none" id="add_task_select_category_box">
+                            <div class="addTaskCategorySelect" onclick="selectCategory(1); addTaskCheckForm()">
+                                Technical Task</div>
+                            <div class="addTaskCategorySelect" onclick="selectCategory(2); addTaskCheckForm()">User
+                                Story</div>
+                        </div>
+
+                        <div class="d-none extra-small" id="add_task_mistake_category">This field is required</div>
+
+                        <div class="d-none" id="overlay"
+                            onclick="addTaskCloseContextMenuCategory(); addTaskShowMsg('category')"></div>
+
+                        <h3 class="m-top-40">Subtasks</h3>
+                        <label for="subtaskAddTask" class="add-task-label bgC-white">
+                            <input type="text" name="subtaskAddTask" class="add-task-title" id="add_task_subtask"
+                                placeholder="Add new Subtask" autocomplete="off" maxlength="20"
+                                onkeyup="changeSubTaskImg()">
+                            <img src="./img/add_task/cross.svg" class="add-subtask-img cursor-pointer"
+                                onclick="clearSubTaskInput();">
+                            <img src="./img/add_task/seperator_subtasks.svg" class="seperator_subtasks">
+                            <img src="./img/add_task/plus.svg" class="add-subtask-img cursor-pointer"
+                                id="add_task_subtask_img" onclick="addSubtask()">
+                        </label>
+
+                        <div id="outputSubtasks" class="outputSubtaskClass"></div>
+                    </div>
+
+                    <div class="add-task-popup-container d-none" id="add_task_popup_container">
+                        <div class="add-task-popup-reg" id="add_task_popup_reg">Task add</div>
+                    </div>
+                </div>
+                <div class="add-task-bottom-container">
+                    <div class="add-task-required-info"><span>*</span>This field is required</div>
+                    <div style="display: flex;">
+                        <button type="reset" class="add-task-clear-button d-flex-ai-center-jc-center"
+                            onclick="boardCloseAddTask()">Cancel
+                            <div class="add-task-bottom-container-button">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="./img/board/svg">
+                                    <path
+                                        d="M6.99999 8.40005L2.09999 13.3C1.91665 13.4834 1.68332 13.575 1.39999 13.575C1.11665 13.575 0.883321 13.4834 0.699988 13.3C0.516654 13.1167 0.424988 12.8834 0.424988 12.6C0.424988 12.3167 0.516654 12.0834 0.699988 11.9L5.59999 7.00005L0.699988 2.10005C0.516654 1.91672 0.424988 1.68338 0.424988 1.40005C0.424988 1.11672 0.516654 0.883382 0.699988 0.700049C0.883321 0.516715 1.11665 0.425049 1.39999 0.425049C1.68332 0.425049 1.91665 0.516715 2.09999 0.700049L6.99999 5.60005L11.9 0.700049C12.0833 0.516715 12.3167 0.425049 12.6 0.425049C12.8833 0.425049 13.1167 0.516715 13.3 0.700049C13.4833 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4833 1.91672 13.3 2.10005L8.39999 7.00005L13.3 11.9C13.4833 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4833 13.1167 13.3 13.3C13.1167 13.4834 12.8833 13.575 12.6 13.575C12.3167 13.575 12.0833 13.4834 11.9 13.3L6.99999 8.40005Z"
+                                        fill="#2A3647" />
+                                </svg>
+                            </div>
+                        </button>
+                        <button class="d-none add-task-add-button d-flex-ai-center-jc-center" id="add_task_button">Add
+                            Task <img src="./img/add_task/check_white.svg"></button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+    <!-------------------------------------------------- Section for show edit task detail Card ---------------------------------------------------------------------------->
+    <div id="board_task_edit_task_main" class="board-edit-task-main d-none jc-center ai-center">
+        <div id="board_edit_task_div" class="board-edit-task">
+            <div class="board-edit-task-container d-flex flex-d-col">
+                <div class="board-edit-task-header-container d-flex jc-end">
+                    <div class="board-edit-task-close" onclick="boardCloseEditTask()">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="./img/board/svg">
+                            <path
+                                d="M6.99999 8.40005L2.09999 13.3C1.91665 13.4834 1.68332 13.575 1.39999 13.575C1.11665 13.575 0.883321 13.4834 0.699988 13.3C0.516654 13.1167 0.424988 12.8834 0.424988 12.6C0.424988 12.3167 0.516654 12.0834 0.699988 11.9L5.59999 7.00005L0.699988 2.10005C0.516654 1.91672 0.424988 1.68338 0.424988 1.40005C0.424988 1.11672 0.516654 0.883382 0.699988 0.700049C0.883321 0.516715 1.11665 0.425049 1.39999 0.425049C1.68332 0.425049 1.91665 0.516715 2.09999 0.700049L6.99999 5.60005L11.9 0.700049C12.0833 0.516715 12.3167 0.425049 12.6 0.425049C12.8833 0.425049 13.1167 0.516715 13.3 0.700049C13.4833 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4833 1.91672 13.3 2.10005L8.39999 7.00005L13.3 11.9C13.4833 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4833 13.1167 13.3 13.3C13.1167 13.4834 12.8833 13.575 12.6 13.575C12.3167 13.575 12.0833 13.4834 11.9 13.3L6.99999 8.40005Z"
+                                fill="#2A3647" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="edit-task-content"><!-- d-flex flex-d-col -->
+                    <form onsubmit="editTaskUpdate(); return false;"><!-- addTaskToVar(boardTaskStatus) -->
+                        <!-- Titel -->
+                        <h3>Title<span class="required-star">*</span></h3>
+                        <label for="title" class="board-edit-task-label" id="edit_task_label_title">
+                            <input type="text" name="title" class="edit-task-title" id="edit_task_title" minlength="3"
+                                maxlength="20" placeholder="Enter a Title" required
+                                oninput="editTaskRemoveRedBorder('title')">
+                        </label><!--onfocus="editTaskShowMsg('title')" onkeyup="addTaskCheckForm()"  -->
+                        <!-- Titel end -->
+
+                        <div class="d-none extra-small" id="edit_task_mistake_title">This field is required</div>
+
+                        <!-- Description -->
+                        <h3 class="m-top-40">Description</h3>
+                        <label for="description" class="board-edit-task-label m-bottom-40">
+                            <textarea name="description" id="edit_task_description" placeholder="Enter a Description"
+                                class="edit-task-description"></textarea>
+                        </label>
+                        <!-- Description end -->
+
+                        <!-- Due date -->
+                        <h3>Due date<span class="required-star">*</span></h3>
+                        <label for="dueDate" class="board-edit-task-label" id="edit_task_label_dueDate">
+                            <input type="date" name="dueDate" class="edit-task-due-date" id="edit_task_due_date"
+                                required onchange="editTaskRemoveRedBorder('dueDate')">
+                        </label><!--onchange="addTaskCheckForm();... onfocus="editTaskShowMsg('dueDate')"  -->
+
+                        <div class="d-none extra-small" id="edit_task_mistake_dueDate">This field is required</div>
+                        <!-- Due date end -->
+
+                        <!-- Priority -->
+                        <h3 class="m-top-40">Prio</h3>
+                        <div class="edit-task-prio">
+                            <div id="edit_task_prio_urgent" class="edit-task-prio-high"
+                                onclick="editTaskSelectedPrio('urgent')">
+                                Urgent<img id="edit_task_img_prio_urgent" src="./img/board/board_task_urgent.svg">
+                            </div>
+                            <div id="edit_task_prio_medium" class="edit-task-prio-medium"
+                                onclick="editTaskSelectedPrio('medium')">Medium<img id="edit_task_img_prio_medium"
+                                    src="./img/board/board_task_medium.svg"></div>
+                            <div id="edit_task_prio_low" class="edit-task-prio-low"
+                                onclick="editTaskSelectedPrio('low')">
+                                Low<img id="edit_task_img_prio_low" src="./img/board/board_task_low.svg"></div>
+                        </div>
+                        <!-- Priority end -->
+
+                        <!-- Assigned to -->
+                        <h3>Assigned to:</h3>
+                        <!--  <label for="assigned" class="board-edit-task-label bgC-white">
+                            <input type="text" name="assigned" id="edit_task_assigned_to"
+                                class="edit-task-title edit-task-assigned-to" placeholder="chose contacts"
+                                autocomplete="off" onkeyup="editTaskSearchName()" onclick="editTaskSearchName()">
+                        </label> -->
+                        <label for="assigned" class="board-edit-task-label bgC-white" onclick="editTaskSearchName()">
+                            <input type="text" name="assigned" id="edit_task_assigned_to"
+                                class="edit-task-title edit-task-assigned-to" placeholder="Choose contacts"
+                                autocomplete="off" onkeyup="editTaskSearchName()" onclick="editTaskSearchName()">
+                            <img src="img/add_task/arrow_down.svg" onclick="editTaskSearchName()"
+                                class="cursor-pointer pr-8" id="editAssigned_to_arrow_down">
+                            <img src="img/add_task/arrow_up.svg" onclick="editTaskCloseContextMenuAssignedTo()"
+                                class="d-none cursor-pointer pr-8" id="editAssigned_to_arrow_up">
+                        </label>
+
+                        <div class="d-none edit-task-select-field-container" id="edit_task_select_user_box"></div>
+                        <div class="m-top-20 edit-task-assignedToOutput" id="editOutputSelectedContacts"></div>
+                        <!-- Assigned to end -->
+
+                        <!-- Subtasks -->
+                        <h3 class="m-top-40">Subtasks</h3>
+                        <label for="subtaskAddTask" class="board-edit-task-label bgC-white">
+                            <input type="text" name="subtaskAddTask" class="edit-task-title" id="edit_task_subtask"
+                                placeholder="Add new Subtask" autocomplete="off" maxlength="20"
+                                onkeyup="editTaskChangeSubTaskImg()">
+                            <img src="./img/board/cross.svg" class="edit-subtask-img cursorPointer"
+                                onclick="editTaskClearSubTaskInput();">
+                            <img src="./img/board/plus.svg" class="edit-subtask-img cursorPointer"
+                                id="edit_task_subtask_img" onclick="editTaskAddSubtask()">
+                        </label>
+
+                        <div id="edit_task_outputSubtasks" class="edit-task-outputSubtaskClass"></div>
+                        <!-- Subtasks end -->
+                </div>
+                <div class="board-edit-task-bottom-container">
+                    <div class="edit-task-required-info"><span>*</span>This field is required</div>
+                    <button class="d-flex edit-task-add-button d-flex-ai-center-jc-center" id="edit_task_button"
+                        onclick="editTaskCheckForm()">Ok
+                        <img src=" ./img/add_task/check_white.svg">
+                    </button>
+                    </form>
+                </div>
+
+                <div class="edit-task-popup-container d-none" id="add_task_popup_container">
+                    <div class="edit-task-popup-reg" id="add_task_popup_reg">Task add</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/board_event.js"></script>
+
+</body>
+
+</html>

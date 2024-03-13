@@ -1,0 +1,205 @@
+/**************************** Version Marcus ********************************/
+<div class="add-task-container-left">
+  <form onsubmit="addTaskToVar('todo'); return false;">
+    <h3>Title <span class="required-star">*</span></h3>
+    <label for="title" class="add-task-label" id="add_task_label_title">
+      <input type="text" name="title" class="add-task-title" id="add_task_title" minlength="3" maxlength="20"
+        placeholder="Enter a Title" required onkeyup="addTaskCheckForm()" onfocus="addTaskShowMsg('title')"
+        oninput="removeRedBorder('title')">
+    </label>
+
+    <div class="d-none extra-small" id="add_task_mistake_title">This field is required</div>
+
+    <h3 class="m-top-40">Description</h3>
+    <label for="description" class="add-task-label m-bottom-40">
+      <textarea name="description" id="add_task_description" placeholder="Enter a Description"
+        class="add-task-description"></textarea>
+    </label>
+
+    <h3>Assigned to:</h3>
+    <label for="assigned" class="add-task-label bgC-white">
+      <input type="text" name="assigned" id="add_task_assigned_to" class="add-task-title add-task-assigned-to"
+        placeholder="Choose contacts" autocomplete="off" onkeyup="addTaskSearchName()" onclick="addTaskSearchName()">
+    </label>
+
+    <div class="d-none add-task-select-field-container" id="add_task_select_user_box"></div>
+    <div class="m-top-20 assignedToOutput" id="outputSelectedContacts"></div>
+
+    <div class="add-task-required-info">* This field is required</div>
+
+</div>
+
+<div class="add-task-seperator"></div>
+
+<div class="add-task-container-right" id="rightContainer">
+
+  <h3>Due date <span class="required-star">*</span></h3>
+  <label for="dueDate" class="add-task-label" id="add_task_label_dueDate">
+    <input type="date" name="dueDate" class="add-task-due-date" id="add_task_due_date" required onchange="addTaskCheckForm(); 
+      removeRedBorder('dueDate')" onfocus="addTaskShowMsg('dueDate')">
+  </label>
+
+  <div class="d-none extra-small" id="add_task_mistake_dueDate">This field is required</div>
+
+  <h3 class="m-top-40">Prio</h3>
+  <div class="add-task-prio">
+    <div id="add_task_prio_high" class="add-task-prio-high" onclick="addTaskSelectedPriority('high')">
+      Urgent
+      <img id="add_task_img_prio_high" src="./img/add_task/add_task_prio_high.svg">
+    </div>
+    <div id="add_task_prio_medium" class="add-task-prio-medium" onclick="addTaskSelectedPriority('medium')">
+      Medium
+      <img id="add_task_img_prio_medium" src="./img/add_task/add_task_prio_medium.svg">
+    </div>
+    <div id="add_task_prio_low" class="add-task-prio-low" onclick="addTaskSelectedPriority('low')">
+      Low
+      <img id="add_task_img_prio_low" src="./img/add_task/add_task_prio_low.svg">
+    </div>
+  </div>
+
+  <h3>Category<span class="required-star">*</span></h3>
+  <select class="add-task-category-input" id="add_task_label_category" onchange="addTaskCheckForm();">Select task
+    category
+    <option value selected>Select task category</option>
+    <option value="1">Technical Task</option>
+    <option value="2">User Story</option>
+  </select>
+
+  <div class="d-none extra-small" id="add_task_mistake_category">This field is required</div>
+
+  <h3 class="m-top-40">Subtasks</h3>
+  <label for="subtaskAddTask" class="add-task-label bgC-white">
+    <input type="text" name="subtaskAddTask" class="add-task-title" id="add_task_subtask" placeholder="Add new Subtask"
+      autocomplete="off" maxlength="20" onkeyup="changeSubTaskImg()">
+    <img src="./img/add_task/cross.svg" class="add-subtask-img cursor-pointer" onclick="clearSubTaskInput();">
+    <img src="./img/add_task/seperator_subtasks.svg" class="seperator_subtasks">
+    <img src="./img/add_task/plus.svg" class="add-subtask-img cursor-pointer" id="add_task_subtask_img"
+      onclick="addSubtask()">
+  </label>
+
+  <div id="outputSubtasks" class="outputSubtaskClass"></div>
+
+  <div class="add-task-bottom-container">
+    <div class="add-task-required-info-bottom">* This field is required</div>
+    <div class="add-task-buttons-container">
+      <button type="reset" class="add-task-clear-button d-flex-ai-center-jc-center"
+        onclick="clearContactsAndSubtasks()">Clear X</button>
+      <button class="d-none add-task-add-button d-flex-ai-center-jc-center" id="add_task_button">Add Task <img
+          src="./img/add_task/check_white.svg"></button>
+    </div>
+    </form>
+
+    /**************************** Version Tobias ********************************/
+
+    <div class="add-task-container-left">
+      <form onsubmit="addTaskToVar(boardTaskStatus); return false;">
+        <h3>Title <span class="required-star">*</span></h3>
+        <label for="title" class="add-task-label" id="add_task_label_title">
+          <input type="text" name="title" class="add-task-title add-task-blue-border" id="add_task_title" minlength="3"
+            maxlength="20" placeholder="Enter a Title" required onkeyup="addTaskCheckForm()"
+            onfocus="addTaskShowMsg('title')" oninput="removeRedBorder('title')">
+        </label>
+
+        <div class="d-none extra-small" id="add_task_mistake_title">This field is required</div>
+
+        <h3 class="m-top-40">Description</h3>
+        <label for="description" class="add-task-label m-bottom-40">
+          <textarea name="description" id="add_task_description" placeholder="Enter a Description"
+            class="add-task-description add-task-blue-border"></textarea>
+        </label>
+
+        <h3>Assigned to:</h3>
+        <label for="assigned" class="add-task-label bgC-white">
+          <input type="text" name="assigned" id="add_task_assigned_to"
+            class="add-task-title add-task-assigned-to add-task-blue-border" placeholder="chose contacts"
+            autocomplete="off" onkeyup="addTaskSearchName()" onclick="addTaskSearchName()">
+        </label>
+
+        <div class="d-none add-task-select-field-container" id="add_task_select_user_box"></div>
+        <div class="m-top-20 assignedToOutput" id="outputSelectedContacts"></div>
+    </div>
+
+    <div class="add-task-seperator"></div>
+
+    <div id="rightContainer" class="add-task-container-right">
+
+      <h3>Due date <span class="required-star">*</span></h3>
+      <label for="dueDate" class="add-task-label" id="add_task_label_dueDate">
+        <input type="date" name="dueDate" class="add-task-due-date add-task-blue-border" id="add_task_due_date" required
+          onchange="addTaskCheckForm(); removeRedBorder('dueDate')" onfocus="addTaskShowMsg('dueDate')">
+      </label>
+
+      <div class="d-none extra-small" id="add_task_mistake_dueDate">This field is required</div>
+
+      <h3 class="m-top-40">Prio</h3>
+      <div class="add-task-prio">
+        <div id="add_task_prio_high" class="add-task-prio-high" onclick="addTaskSelectedPriority('high')">Urgent<img
+            id="add_task_img_prio_high" src="./img/add_task/add_task_prio_high.svg"></div>
+        <div id="add_task_prio_medium" class="add-task-prio-medium" onclick="addTaskSelectedPriority('medium')">
+          Medium<img id="add_task_img_prio_medium" src="./img/add_task/add_task_prio_medium.svg"></div>
+        <div id="add_task_prio_low" class="add-task-prio-low" onclick="addTaskSelectedPriority('low')">Low<img
+            id="add_task_img_prio_low" src="./img/add_task/add_task_prio_low.svg"></div>
+      </div>
+
+      /**************** neu *****************/
+
+      <h3>Category<span class="required-star">*</span></h3>
+      <select class="add-task-category-input" id="add_task_label_category" onchange="addTaskCheckForm();">Select task
+        category
+        <option value selected>Select task category</option>
+        <option value="1">Technical Task</option>
+        <option value="2">User Story</option>
+      </select>
+      <!-- <label for="category" class="add-task-label bgC-white" id="add_task_label_category">
+        <div class="add-task-category-input" id="add_task_category"
+          onclick="addTaskShowMsg('category'); addTaskOpenContextMenuCategory()" onchange="addTaskCheckForm()">Select
+          task category</div>
+      </label> -->
+
+      <!-- <div class="d-none" id="add_task_select_category_box" onclick="addTaskCloseContextMenuCategory()">
+        <div class="addTaskCategorySelect" onclick="selectCategory(1); addTaskCheckForm()">
+          Technical Task</div>
+        <div class="addTaskCategorySelect" onclick="selectCategory(2); addTaskCheckForm()">User
+          Story</div>
+      </div> -->
+      /**************** neu *****************/
+
+      <div class="d-none extra-small" id="add_task_mistake_category">This field is required</div>
+
+      <h3 class="m-top-40">Subtasks</h3>
+      <label for="subtaskAddTask" class="add-task-label bgC-white">
+        <input type="text" name="subtaskAddTask" class="add-task-title" id="add_task_subtask" placeholder="Add new Subtask"
+          autocomplete="off" maxlength="20" onkeyup="changeSubTaskImg()">
+        <img src="./img/add_task/cross.svg" class="add-subtask-img cursor-pointer" onclick="clearSubTaskInput();">
+        <img src="./img/add_task/seperator_subtasks.svg" class="seperator_subtasks">
+        <img src="./img/add_task/plus.svg" class="add-subtask-img cursor-pointer" id="add_task_subtask_img"
+          onclick="addSubtask()">
+      </label>
+    <!--   <label for="subtaskAddTask" class="add-task-label bgC-white">
+        <input type="text" name="subtaskAddTask" class="add-task-title" id="add_task_subtask"
+          placeholder="Add new Subtask" autocomplete="off" maxlength="20" onkeyup="changeSubTaskImg()">
+        <img src="./img/add_task/cross.svg" class="add-subtask-img cursorPointer" onclick="clearSubTaskInput();">
+        <img src="./img/add_task/plus.svg" class="add-subtask-img cursorPointer" id="add_task_subtask_img"
+          onclick="addSubtask()">
+      </label> -->
+
+      <div id="outputSubtasks" class="outputSubtaskClass"></div>
+    </div>
+
+    <div class="add-task-popup-container d-none" id="add_task_popup_container">
+      <div class="add-task-popup-reg" id="add_task_popup_reg">Task add</div>
+    </div>
+  </div>
+  <div class="add-task-bottom-container">
+    <button type="reset" class="add-task-clear-button d-flex-ai-center-jc-center" onclick="boardCloseAddTask()">Cancel
+      <div class="add-task-bottom-container-button">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="./img/board/svg">
+          <path
+            d="M6.99999 8.40005L2.09999 13.3C1.91665 13.4834 1.68332 13.575 1.39999 13.575C1.11665 13.575 0.883321 13.4834 0.699988 13.3C0.516654 13.1167 0.424988 12.8834 0.424988 12.6C0.424988 12.3167 0.516654 12.0834 0.699988 11.9L5.59999 7.00005L0.699988 2.10005C0.516654 1.91672 0.424988 1.68338 0.424988 1.40005C0.424988 1.11672 0.516654 0.883382 0.699988 0.700049C0.883321 0.516715 1.11665 0.425049 1.39999 0.425049C1.68332 0.425049 1.91665 0.516715 2.09999 0.700049L6.99999 5.60005L11.9 0.700049C12.0833 0.516715 12.3167 0.425049 12.6 0.425049C12.8833 0.425049 13.1167 0.516715 13.3 0.700049C13.4833 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4833 1.91672 13.3 2.10005L8.39999 7.00005L13.3 11.9C13.4833 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4833 13.1167 13.3 13.3C13.1167 13.4834 12.8833 13.575 12.6 13.575C12.3167 13.575 12.0833 13.4834 11.9 13.3L6.99999 8.40005Z"
+            fill="#2A3647" />
+        </svg>
+      </div>
+    </button>
+    <button class="d-none add-task-add-button d-flex-ai-center-jc-center" id="add_task_button">Add
+      Task <img src="./img/add_task/check_white.svg"></button>
+    </form>
