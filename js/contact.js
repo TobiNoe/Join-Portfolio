@@ -10,8 +10,8 @@ let contactListClicked = 0;
  */
 async function contactInit() {
   await includeHTML();
-  await loadUsers();
-  await loadTasks();
+  //await loadUsers(); //TODO:
+  //await loadTasks(); //TODO:
   loadCurrentUser();
   loadInitials();
   renderContacts();
@@ -45,7 +45,7 @@ async function renderContacts() {
       contactlist.innerHTML += `<div class="contact-list-spacer">&nbsp;</div>`;
     }
 
-    contactlist.innerHTML += await renderContactsHTML(contact, you);
+    contactlist.innerHTML += await renderContactsHTML(contact, you); //TODO:
   }
 }
 

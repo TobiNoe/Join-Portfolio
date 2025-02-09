@@ -28,13 +28,13 @@ let allColors = [
  * @param {string} value of key
  * @returns value of key as json
  */
-async function setItem(key, value) {
+/* async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {
     method: "POST",
     body: JSON.stringify(payload),
   }).then((res) => res.json());
-}
+} */
 /**
  * loads the key with the value from backend
  * @param {string} key name of key in backend
@@ -55,31 +55,66 @@ async function getItem(key) {
 /**
  * loads the users from backend
  */
-async function loadUsers() {
+/* async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
   } catch (e) {
     console.error("Loading error:", e);
   }
-}
+} */
 
 /**
  * loads the tasks from backend
  */
-async function loadTasks() {
+/* async function loadTasks() {
   try {
     tasks = JSON.parse(await getItem("tasks"));
   } catch (e) {
     console.error("Loading error:", e);
   }
-}
+} */
 
 /**
  * loads the contacts from backend
  */
-async function loadContacts() {
+/* async function loadContacts() {
   try {
     contacts = JSON.parse(await getItem("contacts"));
+  } catch (e) {
+    console.error("Loading error:", e);
+  }
+} */
+
+  //TODO: chnage function in getItem function
+  async function getContacts() {
+    const key = 'django-insecure-7q*4-ur6z73^kjl*4zq8(8=5lid9-#-it9kz&)2_miao%&=mk9';
+    const url = `http://127.0.0.1:8000/api/contacts/?key=${encodeURIComponent(key)}&format=json`;
+    const response = await fetch(url, {
+      headers: { 'Accept': 'application/json' }
+    });
+    const json = await response.json();
+    
+    /* console.log('Empfangene JSON:', json); */
+    
+    // Wenn json ein Array ist, nutze es direkt:
+    if (Array.isArray(json)) {
+      //console.log('Daten empfangen :>> ', json);
+      return json;
+    }
+    
+    // Falls json ein Objekt mit data-Eigenschaft ist:
+    if (json.data) {
+      //console.log('Daten empfangen :>> ', json.data.value);
+      return json.data.value;
+    }
+    
+    throw new Error('Could not find data with key.');
+  }
+
+async function loadContacts() {
+  try {
+    contacts = await getContacts();
+    console.log('Kontakte:',contacts)
   } catch (e) {
     console.error("Loading error:", e);
   }
