@@ -1,8 +1,8 @@
 async function addTaskInit() {
   addTaskSetPrioMedium();
   addTaskGetToday();
-  await loadTasks();
-  await loadUsers();
+  /* await loadTasks();
+  await loadUsers(); */TODO:
   await loadContacts();
   renderSubTasks();
   loadCurrentUser();
@@ -72,7 +72,7 @@ function addTaskToVar(param) {
  * and put it to backendstorage
  */
 async function addTaskSave() {
-  await loadTasks();
+  TODO:/* await loadTasks(); */
   tasks.push({
     id: Date.now(),
     autor: currentUser["userId"],
@@ -87,7 +87,7 @@ async function addTaskSave() {
     status: task_status,
   });
 
-  await setItem("tasks", JSON.stringify(tasks));
+  TODO:/* await setItem("tasks", JSON.stringify(tasks)); */
 
   addTaskSaveCompleted();
 }
@@ -99,7 +99,7 @@ function addTaskSaveCompleted() {
   document
     .getElementById("add_task_popup_container")
     .classList.remove("d-none");
-  setTimeout(addTaskGoToBoard, 1000);
+  /*TODO: setTimeout(addTaskGoToBoard, 1000); */
 }
 
 /**
