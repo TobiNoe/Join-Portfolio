@@ -11,7 +11,7 @@ let contactListClicked = 0;
 async function contactInit() {
   await includeHTML();
   //await loadUsers(); //TODO:
-  //await loadTasks(); //TODO:
+  await loadTasks();
   loadCurrentUser();
   loadInitials();
   renderContacts();
@@ -126,7 +126,7 @@ async function deleteContact(contactId) {
   contacts.splice(indexToDelete, 1);
 
   // Update the contacts in storage
-  await setItem("contacts", JSON.stringify(contacts));
+  await setItem("contacts", JSON.stringify(contacts)); //TODO: deletItem() Function 
 
   // Clear and close the bigContactCard
   const bigContactCard = document.getElementById("big-contact-card");
@@ -217,7 +217,7 @@ async function editContact() {
   if (newInitials) contact.initials = newInitials;
 
   // Save the updated contacts to storage
-  await setItem("contacts", JSON.stringify(contacts));
+  await setItem("contacts", JSON.stringify(contacts)); //TODO: putItem() or patchItem()
   closeEditContact();
   await renderContacts();
   showContact(clickedContact);
@@ -273,23 +273,19 @@ async function addContact() {
   let phone = document.getElementById("contact-input-phone").value;
   let i = Math.floor(Math.random() * allColors.length);
   let color = allColors[i];
-  let userId = generateUserId();
+  /*TODO: let userId = generateUserId(); */
   let initials = generateUserInitials(name);
 
-  await loadContacts();
-
-  // Push the new contact to the contacts array
-  contacts.push({
-    id: userId,
+  let newContact = {
     name: name,
     email: email,
-    initials: initials,
-    phone: phone,
+    phone: parseInt(phone), // Sicherstellen, dass phone als Zahl gesendet wird
     color: color,
-  });
+    initials: initials
+  };
 
-  // Save the updated contacts to storage
-  await setItem("contacts", JSON.stringify(contacts));
+  await postItem("contacts", newContact);
+  await loadContacts();
 
   document.getElementById("contact-input-name").value = "";
   document.getElementById("contact-input-email").value = "";
