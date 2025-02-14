@@ -34,18 +34,19 @@ async function getItem(item) {
     headers: { 'Accept': 'application/json' }
   });
   const json = await response.json();
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: Could not find data with key.`);
+  }
 
-  // Wenn json ein Array ist, nutze es direkt:
   if (Array.isArray(json)) {
     return json;
   }
 
-  // Falls json ein Objekt mit data-Eigenschaft ist:
   if (json.data) {
     return json.data.value;
   }
 
-  throw new Error('Could not find data with key.');
+  throw new Error('Could not find data structure in response.');
 }
 
 /**

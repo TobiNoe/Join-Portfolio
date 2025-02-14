@@ -1,8 +1,8 @@
 async function addTaskInit() {
   addTaskSetPrioMedium();
   addTaskGetToday();
-  /* await loadTasks();
-  await loadUsers(); */TODO:
+  await loadTasks();
+  /*TODO:await loadUsers(); */
   await loadContacts();
   renderSubTasks();
   loadCurrentUser();
@@ -48,7 +48,7 @@ function addTaskCheckForm() {
     document.getElementById("add_task_title").value.length > 0 &&
     document.getElementById("add_task_due_date").value.length > 0 &&
     document.getElementById("add_task_category").textContent !=
-      "Select Task category"
+    "Select Task category"
   ) {
     document.getElementById("add_task_button").classList.remove("d-none");
   } else {
@@ -72,8 +72,8 @@ function addTaskToVar(param) {
  * and put it to backendstorage
  */
 async function addTaskSave() {
-  TODO:/* await loadTasks(); */
-  tasks.push({
+  /* TODO:await loadTasks(); */
+  /* tasks.push({
     id: Date.now(),
     autor: currentUser["userId"],
     title: titleAddTask,
@@ -85,9 +85,25 @@ async function addTaskSave() {
     subtask: subtaskAddTask,
     status_subtask: statusSubtaskAddTask,
     status: task_status,
-  });
+  }); */
 
-  TODO:/* await setItem("tasks", JSON.stringify(tasks)); */
+  let newTask = {
+    autor: currentUser["userId"],
+    title: titleAddTask,
+    description: descriptionAddTask,
+    assignedTo: assignedToAddTask,
+    dueDate: dueDateAddTask,
+    prio: addTaskPrio,
+    categoryTask: categoryAddTask,
+    subtask: subtaskAddTask,
+    status_subtask: statusSubtaskAddTask,
+    status: task_status,
+  };
+
+  console.log('newTask :>> ', newTask);
+  await postItem("tasks", newTask);
+
+ /*  TODO:await setItem("tasks", JSON.stringify(tasks)); */
 
   addTaskSaveCompleted();
 }
@@ -99,7 +115,7 @@ function addTaskSaveCompleted() {
   document
     .getElementById("add_task_popup_container")
     .classList.remove("d-none");
-  /*TODO: setTimeout(addTaskGoToBoard, 1000); */
+    setTimeout(addTaskGoToBoard, 1000);
 }
 
 /**
@@ -136,9 +152,8 @@ function addTaskSelectedPriority(priority) {
         `add-task-prio-${key}-pressed-button`,
         isSelected
       );
-      el.img.src = `./img/add_task/add_task_prio_${key}${
-        isSelected ? "_white" : ""
-      }.svg`;
+      el.img.src = `./img/add_task/add_task_prio_${key}${isSelected ? "_white" : ""
+        }.svg`;
     }
   }
   addTaskPrio =

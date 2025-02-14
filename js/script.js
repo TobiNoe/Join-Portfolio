@@ -3,7 +3,7 @@
  */
 async function init() {
   await includeHTML();
-  await loadUsers();
+  /*await loadUsers();*/
   loadCurrentUser();
   loadInitials();
 }

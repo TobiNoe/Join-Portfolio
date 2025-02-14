@@ -143,7 +143,7 @@ function allowDrop(ev) {
  */
 async function boardDrop(category) {
     tasks[boardCurrentDraggedTask]['status'] = category;
-    await setItem('tasks', tasks);
+    /*TODO:await setItem('tasks', tasks);*/
     await boardReadTasks();
     boardRenderInit();
 }
