@@ -121,12 +121,8 @@ async function deleteContact(contactId) {
     return;
   }
 
-  // Remove the contact from sortedContacts
-  const indexToDelete = contacts.findIndex((c) => c.id === contactId);
-  contacts.splice(indexToDelete, 1);
-
   // Update the contacts in storage
-  await setItem("contacts", JSON.stringify(contacts)); //TODO: deletItem() Function 
+  await deleteItem(contactId);
 
   // Clear and close the bigContactCard
   const bigContactCard = document.getElementById("big-contact-card");

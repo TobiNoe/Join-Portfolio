@@ -111,6 +111,21 @@ async function postItem(item, data) {
   /* return response; */
 }
 
+async function deleteItem(Id) {
+  const url = `${STORAGE_URL}contacts/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+}
+
 /**
  * loads the users from backend
  */
