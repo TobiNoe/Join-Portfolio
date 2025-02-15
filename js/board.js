@@ -18,7 +18,7 @@ async function boardInit() {
     await includeHTML();
     loadCurrentUser();
     loadInitials();
-    await loadTasks();
+   /*  await loadTasks(); */
     await loadContacts();
     await boardReadTasks();
     boardRenderInit();
@@ -49,6 +49,7 @@ function boardCleanTaksArraysSearch() {
  */
 async function boardReadTasks() {
     boardCleanTaksArrays();
+    await loadTasks();
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
@@ -183,12 +184,12 @@ function boardCloseDetailCardHide(tasksDetailDiv) {
 }
 
 /**
- * function remoce a tasks from tasks json and call functions to save changes in the backend and render new
+ * function remove a tasks and call functions to save changes in the backend and render new
  * @param {number} tasksIndex 
  */
 async function boardDeleteTask(tasksIndex) {
-    tasks.splice(tasksIndex, 1);
-    await setItem('tasks', tasks);
+    let Id = tasks[tasksIndex].id;
+    await deleteItem("tasks", Id);
     await boardReadTasks();
     boardRenderInit();
     boardCloseDetailCard();

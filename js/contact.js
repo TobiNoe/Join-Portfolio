@@ -122,7 +122,7 @@ async function deleteContact(contactId) {
   }
 
   // Update the contacts in storage
-  await deleteItem(contactId);
+  await deleteItem("contacts", contactId);
 
   // Clear and close the bigContactCard
   const bigContactCard = document.getElementById("big-contact-card");

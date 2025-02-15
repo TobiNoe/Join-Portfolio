@@ -111,8 +111,8 @@ async function postItem(item, data) {
   /* return response; */
 }
 
-async function deleteItem(Id) {
-  const url = `${STORAGE_URL}contacts/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+async function deleteItem(item, Id) {
+  const url = `${STORAGE_URL}${item}/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
 
   const response = await fetch(url, {
     method: 'DELETE',
