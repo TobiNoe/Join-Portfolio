@@ -53,7 +53,7 @@ function editReadCurrentSubtasks() {
 }
 
 /**
- * Function fill the input fields ans selections of edt window, with current values of current task
+ * Function fill the input fields and selections of edit window, with current values of current task
  */
 function editTaskFillInput() {
   document.getElementById('edit_task_title').value = taskRecordSet['title'];
@@ -68,17 +68,27 @@ function editTaskFillInput() {
  * function read all editable values and overwrite old values
  */
 async function editTaskUpdate() {
-  tasks[taskIndex]['title'] = document.getElementById('edit_task_title').value;
-  tasks[taskIndex]['description'] = document.getElementById('edit_task_description').value;
-  tasks[taskIndex]['dueDate'] = document.getElementById('edit_task_due_date').value;
-  tasks[taskIndex]['prio'] = changedPrio;
-  tasks[taskIndex]['assignedTo'] = editAssignedToAddTask;
-  tasks[taskIndex]['subtask'] = editSubtaskAddTask;
-  tasks[taskIndex]['status_subtask'] = editStatusSubtaskAddTask;
+  let Task = {
+    autor: currentUser["userId"],
+    title: document.getElementById('edit_task_title').value,
+    description: document.getElementById('edit_task_description').value,
+    assignedTo: editAssignedToAddTask,
+    dueDate: document.getElementById('edit_task_due_date').value,
+    prio: changedPrio,
+    categoryTask: tasks[taskIndex].categoryTask,
+    subtask: editSubtaskAddTask,
+    status_subtask: editStatusSubtaskAddTask,
+    status: tasks[taskIndex].status,
+  };
+  let id = tasks[taskIndex].id;
+
+  await updateItem("tasks", id, Task);
+  await loadTasks();
+  taskIndex = boardIndexOfJSON(tasks, id);
+ 
   boardCloseEditTask();
   boardRenderDetailCard(taskIndex);
   boardUpdateTasksPreview(taskIndex);
-  await setItem('tasks', tasks);
 }
 
 /**
