@@ -3,7 +3,7 @@
  * @returns {Promise<void>} A promise that resolves when the initialization is complete.
  */
 async function loginInit() {
-  await loadUsers();
+  /*TODO: await loadUsers(); */
   await loadContacts();
 }
 

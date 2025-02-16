@@ -1,5 +1,4 @@
 let clickedContact;
-
 let contactListClicked = 0;
 
 /**
@@ -198,22 +197,20 @@ async function editContact() {
   const emailInput = document.getElementById("contact-edit-email");
   const phoneInput = document.getElementById("contact-edit-phone");
 
-  // Get the updated values from the inputs
-  const newName = nameInput.value;
-  const newEmail = emailInput.value;
-  const newPhone = phoneInput.value;
-
   // Generate initials for the user
+  const newName = nameInput.value;
   const newInitials = generateUserInitials(newName);
 
-  // Update the contact details if new values are provided
-  if (newName) contact.name = newName;
-  if (newEmail) contact.email = newEmail;
-  if (newPhone) contact.phone = newPhone;
-  if (newInitials) contact.initials = newInitials;
+  let Contact = {
+    name: nameInput.value,
+    email: emailInput.value,
+    phone: parseInt(phoneInput.value),
+    color: contact.color,
+    initials: newInitials
+  };
 
   // Save the updated contacts to storage
-  await setItem("contacts", JSON.stringify(contacts)); //TODO: putItem() or patchItem()
+  await updateItem("contacts", contact.id, Contact);
   closeEditContact();
   await renderContacts();
   showContact(clickedContact);

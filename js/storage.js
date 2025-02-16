@@ -111,6 +111,33 @@ async function postItem(item, data) {
   /* return response; */
 }
 
+/**
+ * update the key with the value to backend
+ * @param {string} item name of key in backend
+ * @param {string} data of key
+ * @returns value of key as json
+ */
+async function updateItem(item, id, data) {
+  const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+
+  //TODO: Optional: Wir können die Response als JSON parsen und zurückgeben
+  /* const json = await response.json(); */
+  /* return response; */
+}
+
 async function deleteItem(item, Id) {
   const url = `${STORAGE_URL}${item}/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
 
