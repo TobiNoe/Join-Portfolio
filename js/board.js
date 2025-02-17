@@ -143,8 +143,14 @@ function allowDrop(ev) {
  * @param {string} category 
  */
 async function boardDrop(category) {
-    tasks[boardCurrentDraggedTask]['status'] = category;
-    /*TODO:await setItem('tasks', tasks);*/
+    let updateStatus = {
+        "status": category
+    }
+    
+    let taskID = tasks[boardCurrentDraggedTask].id;
+    console.log('boardCurrentDraggedTask :>> ', boardCurrentDraggedTask);
+       
+    await updateItem('tasks', taskID, updateStatus);
     await boardReadTasks();
     boardRenderInit();
 }
@@ -303,7 +309,7 @@ async function boardSetStatusPrevieCard(status, tasksIndex) {
     let updateStatus = {
         "status": status
     }
-    
+
     let taskID = tasks[tasksIndex].id;
        
     await updateItem('tasks', taskID, updateStatus);
