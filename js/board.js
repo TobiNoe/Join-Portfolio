@@ -300,8 +300,13 @@ function changeButtonPreviewCard(status, taskIndex) {
 * @param {string} category 
 */
 async function boardSetStatusPrevieCard(status, tasksIndex) {
-    tasks[tasksIndex]['status'] = status;
-    await setItem('tasks', tasks);
+    let updateStatus = {
+        "status": status
+    }
+    
+    let taskID = tasks[tasksIndex].id;
+       
+    await updateItem('tasks', taskID, updateStatus);
     await boardReadTasks();
     boardRenderInit();
     boardRenderDetail = true;
