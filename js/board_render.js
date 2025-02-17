@@ -282,7 +282,12 @@ async function boardSubtaskChangeStatus(id, tasksIndex, subtasksIndex) {
         subtaskStatus[subtasksIndex] = 'do';
     }
 
-    await setItem('tasks', tasks);
+    let updateSubtask = {
+        "status_subtask": subtaskStatus
+    }
+
+    let taskID = tasks[tasksIndex].id;
+    await updateItem("tasks", taskID, updateSubtask);
     boardRenderSubtaskChangeStatus(id, subtaskStatus[subtasksIndex]);
     boardSubtasksAvailablePreview(tasksIndex);
 }
@@ -356,13 +361,13 @@ function boardRenderDetailCard(tasksIndex) {
         tasksCategoryDiv.parentElement.classList.add('d-flex');
         tasksCategoryDiv.innerHTML = '';
         tasksCategoryDiv.innerHTML = boardRenderDetailCardHTML(tasksIndex);
-    
+
         boardRenderStoryline(`board_task_storyline_detail`, tasksIndex);
         boardRenderDueDate(tasksIndex);
         boardRenderImgPrio('board-task-card-priority-img', tasksIndex);
         boardRenderAssignedTo(tasksIndex);
         boardSubtasksAvailableDetail(tasksIndex);
-        boardRenderPrioText('board-task-card-priority-text', tasksIndex);   
+        boardRenderPrioText('board-task-card-priority-text', tasksIndex);
     } else {
         return;
     }

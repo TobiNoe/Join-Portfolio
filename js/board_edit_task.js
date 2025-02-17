@@ -82,7 +82,7 @@ async function editTaskUpdate() {
   };
   let id = tasks[taskIndex].id;
 
-  await updateItem("tasks", id, Task);
+  await editItem("tasks", id, Task);
   await loadTasks();
   taskIndex = boardIndexOfJSON(tasks, id);
  

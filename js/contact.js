@@ -210,7 +210,7 @@ async function editContact() {
   };
 
   // Save the updated contacts to storage
-  await updateItem("contacts", contact.id, Contact);
+  await editItem("contacts", contact.id, Contact);
   closeEditContact();
   await renderContacts();
   showContact(clickedContact);

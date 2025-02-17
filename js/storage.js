@@ -117,11 +117,32 @@ async function postItem(item, data) {
  * @param {string} data of key
  * @returns value of key as json
  */
-async function updateItem(item, id, data) {
+async function editItem(item, id, data) {
   const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
 
   const response = await fetch(url, {
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+
+  //TODO: Optional: Wir können die Response als JSON parsen und zurückgeben
+  /* const json = await response.json(); */
+  /* return response; */
+}
+
+async function updateItem(item, id, data) {
+  const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+
+  const response = await fetch(url, {
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
