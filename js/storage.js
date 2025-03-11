@@ -1,5 +1,6 @@
 const STORAGE_KEY = 'django-insecure-kj=pf$1c*$kk36@iy-riv1m7=tnos@e25m36)2my(dn(9km+bj';
 const STORAGE_URL = "http://127.0.0.1:8000/api/";
+const SIGN_UP_URL = "http://127.0.0.1:8000/api/auth/registration/";
 
 let users = [];
 let tasks = [];
@@ -22,6 +23,23 @@ let allColors = [
   "#FF4646",
   "#FFBB2B",
 ];
+
+async function signUpUser(data) {
+  const url = `${SIGN_UP_URL}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+}
 
 /**
  * loads the key with the value from backend
