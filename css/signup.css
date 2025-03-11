@@ -77,9 +77,11 @@ input:focus {
 
 #errorbox {
   margin-top: 10px;
-  text-align: left;
+  text-align: center;
   font-size: 14px;
   color: #ff8190;
+  text-wrap: auto;
+  max-width: 380px;
 }
 
 .signup-inputs {
@@ -95,15 +97,13 @@ input:focus {
 }
 
 #signup-input-email {
-  background: url(/img/login/login_input_email.svg) right center / contain
-    no-repeat;
+  background: url(/img/login/login_input_email.svg) right center / contain no-repeat;
   background-origin: content-box;
   background-size: auto;
 }
 
 #signup-input-name {
-  background: url(/img/login/login_input_name.svg) right center / contain
-    no-repeat;
+  background: url(/img/login/login_input_name.svg) right center / contain no-repeat;
   background-origin: content-box;
   background-size: auto;
 }
@@ -153,7 +153,7 @@ input:focus {
   border-radius: 5px;
 }
 
-.checkbox-container:hover input ~ .checkmark {
+.checkbox-container:hover input~.checkmark {
   background-color: #ececec;
 }
 
@@ -163,7 +163,7 @@ input:focus {
   display: none;
 }
 
-.checkbox-container input:checked ~ .checkmark:after {
+.checkbox-container input:checked~.checkmark:after {
   display: block;
 }
 
@@ -245,8 +245,7 @@ input:focus {
 }
 
 .password-toggle {
-  background: url(/img/login/visibility_off.svg) right center / contain
-    no-repeat;
+  background: url(/img/login/visibility_off.svg) right center / contain no-repeat;
   background-origin: content-box;
   background-size: auto;
   cursor: pointer;
@@ -297,9 +296,11 @@ input:focus {
   .signup-buttons {
     flex-direction: column;
   }
-  .signup-buttons > * {
+
+  .signup-buttons>* {
     width: 180px;
   }
+
   .password-toggle {
     transform: translate(310px, -33px);
   }

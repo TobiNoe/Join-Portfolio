@@ -3,7 +3,7 @@
  * @returns {Promise<void>} A promise that resolves when the initialization is complete.
  */
 async function signupInit() {
-  await loadUsers();
+  //await loadUsers();
   await loadContacts();
 }
 
@@ -20,40 +20,88 @@ async function registerUser() {
   let name = document.getElementById("signup-input-name").value;
   let email = document.getElementById("signup-input-email").value;
   let password = document.getElementById("input-password2").value;
-  let userId = generateUserId();
+  let repeated_password = document.getElementById("input-password3").value;
+  //let userId = generateUserId();
   let initials = generateUserInitials(name);
   let i = Math.floor(Math.random() * allColors.length);
   let color = allColors[i];
 
   await loadContacts();
-  await loadUsers();
+  //await loadUsers();
   if (!acceptChecked) {
     document.getElementById("errorbox").innerHTML =
       "Please accept our Privacy Policy to sign up!";
     return;
   } else {
     signupbutton.disabled = true;
-    users.push({
+
+    /* users.push({
       id: userId,
       name: name,
       email: email,
       password: password,
       initials: initials,
       color: color,
-    });
-    contacts.push({
-      id: userId,
+    }); */
+
+    /*  contacts.push({
+       id: userId,
+       name: name,
+       email: email,
+       initials: initials,
+       phone: "",
+       color: color,
+     }); */
+
+    let User = {
+      username: name,
+      email: email,
+      password: password,
+      repeated_password: repeated_password
+    };
+
+    let Contact = {
       name: name,
       email: email,
-      initials: initials,
       phone: "",
       color: color,
-    });
+      initials: initials
+    };
 
-    await setItem("users", JSON.stringify(users));
-    await setItem("contacts", JSON.stringify(contacts));
+    //console.log('User :>> ', User);
+    //console.log('Contact :>> ', Contact);
+
+    try {
+      await signUpUser(User);
+    } catch (error) {
+      document.getElementById("errorbox").innerHTML = error.message;
+    }
+
+  /*   try {
+      await signUpUser(User);
+    } catch (error) {
+      let errorMsg;
+      try {
+        // Versuche, die Fehlermeldung als JSON zu parsen
+        const errorObj = JSON.parse(error.message);
+        // Iteriere über die Felder und formatiere die Meldungen
+        errorMsg = Object.entries(errorObj)
+          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+          .join('<br>');
+      } catch (parseError) {
+        // Falls das Parsen fehlschlägt, benutze einfach den originalen Error-Text
+        errorMsg = error.message;
+      }
+      document.getElementById("errorbox").innerHTML = errorMsg;
+      console.error("Fehler bei der Registrierung: ", error);
+    } */
+
+
+
+    //await setItem("users", JSON.stringify(users));
+    //await setItem("contacts", JSON.stringify(contacts));
     signupbutton.disabled = false;
-    window.location.href = "index.html";
+    //window.location.href = "index.html";
   }
 }
 
@@ -74,9 +122,10 @@ function generateUserInitials(name) {
  * Generates a unique user ID based on the current timestamp.
  * @returns {number} The generated user ID.
  */
-function generateUserId() {
+/* function generateUserId() {
   return Date.now();
 }
+ */
 
 /**
  * Checks if the entered password matches the confirmed password.

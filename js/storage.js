@@ -25,7 +25,7 @@ let allColors = [
 ];
 
 async function signUpUser(data) {
-  const url = `${SIGN_UP_URL}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = `${SIGN_UP_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -36,9 +36,16 @@ async function signUpUser(data) {
     body: JSON.stringify(data)
   });
 
-  if (!response.ok) {
-    throw new Error(`Error: ${response.statusText}`);
+  const responseData = await response.json();
+
+  // Wenn der Status nicht 201 ist, dann handelt es sich um einen Fehlerfall.
+  if (response.status !== 201) {
+    // Wirf den Fehler mit der Response, damit dieser im try-catch abgefangen werden kann.
+    throw new Error(JSON.stringify(responseData));
   }
+
+  //console.log("Benutzer erfolgreich registriert :>> ", responseData);
+  //return responseData;
 }
 
 /**
