@@ -26,7 +26,7 @@ async function registerUser() {
   let i = Math.floor(Math.random() * allColors.length);
   let color = allColors[i];
 
-  await loadContacts();
+  //await loadContacts();
   //await loadUsers();
   if (!acceptChecked) {
     document.getElementById("errorbox").innerHTML =
@@ -34,24 +34,6 @@ async function registerUser() {
     return;
   } else {
     signupbutton.disabled = true;
-
-    /* users.push({
-      id: userId,
-      name: name,
-      email: email,
-      password: password,
-      initials: initials,
-      color: color,
-    }); */
-
-    /*  contacts.push({
-       id: userId,
-       name: name,
-       email: email,
-       initials: initials,
-       phone: "",
-       color: color,
-     }); */
 
     let User = {
       username: name,
@@ -68,40 +50,18 @@ async function registerUser() {
       initials: initials
     };
 
-    //console.log('User :>> ', User);
-    //console.log('Contact :>> ', Contact);
+    console.log('User :>> ', User);
+    console.log('Contact :>> ', Contact);
 
     try {
+      document.getElementById("errorbox").innerHTML = '';
       await signUpUser(User);
+      window.location.href = "index.html";
     } catch (error) {
       document.getElementById("errorbox").innerHTML = error.message;
     }
 
-  /*   try {
-      await signUpUser(User);
-    } catch (error) {
-      let errorMsg;
-      try {
-        // Versuche, die Fehlermeldung als JSON zu parsen
-        const errorObj = JSON.parse(error.message);
-        // Iteriere über die Felder und formatiere die Meldungen
-        errorMsg = Object.entries(errorObj)
-          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
-          .join('<br>');
-      } catch (parseError) {
-        // Falls das Parsen fehlschlägt, benutze einfach den originalen Error-Text
-        errorMsg = error.message;
-      }
-      document.getElementById("errorbox").innerHTML = errorMsg;
-      console.error("Fehler bei der Registrierung: ", error);
-    } */
-
-
-
-    //await setItem("users", JSON.stringify(users));
-    //await setItem("contacts", JSON.stringify(contacts));
     signupbutton.disabled = false;
-    //window.location.href = "index.html";
   }
 }
 

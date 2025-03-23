@@ -42,7 +42,7 @@ async function signUpUser(data) {
   if (response.status !== 201) {
     // Wirf den Fehler mit der Response, damit dieser im try-catch abgefangen werden kann.
     throw new Error(JSON.stringify(responseData));
-  }
+  } 
 
   //console.log("Benutzer erfolgreich registriert :>> ", responseData);
   //return responseData;
