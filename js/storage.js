@@ -1,6 +1,7 @@
 const STORAGE_KEY = 'django-insecure-kj=pf$1c*$kk36@iy-riv1m7=tnos@e25m36)2my(dn(9km+bj';
 const STORAGE_URL = "http://127.0.0.1:8000/api/";
 const SIGN_UP_URL = "http://127.0.0.1:8000/api/auth/registration/";
+const LOGIN_URL = "http://127.0.0.1:8000/api/auth/login/";
 
 let users = [];
 let tasks = [];
@@ -46,6 +47,25 @@ async function signUpUser(data) {
 
   //console.log("Benutzer erfolgreich registriert :>> ", responseData);
   //return responseData;
+}
+
+async function loginUser(data) {
+  const url = `${LOGIN_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  const responseData = await response.json();
+
+  if (response.status !== 201) {
+    throw new Error(JSON.stringify(responseData));
+  } 
 }
 
 /**
