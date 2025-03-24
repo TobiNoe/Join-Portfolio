@@ -36,13 +36,13 @@ async function registerUser() {
     signupbutton.disabled = true;
 
     let User = {
-      username: name,
+      username: email,
       email: email,
       password: password,
       repeated_password: repeated_password
     };
 
-    let Contact = {
+    let newContact = {
       name: name,
       email: email,
       phone: "",
@@ -51,11 +51,12 @@ async function registerUser() {
     };
 
     console.log('User :>> ', User);
-    console.log('Contact :>> ', Contact);
+    console.log('Contact :>> ', newContact);
 
     try {
       document.getElementById("errorbox").innerHTML = '';
       await signUpUser(User);
+      await postItem("contacts", newContact);
       window.location.href = "index.html";
     } catch (error) {
       document.getElementById("errorbox").innerHTML = error.message;
