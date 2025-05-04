@@ -16,6 +16,7 @@ async function loginInit() {
 function login() {
   const email = document.getElementById("login-input-email").value;
   const password = document.getElementById("input-password1").value;
+  
   let user = users.find((u) => u.email == email && u.password == password);
   if (user) {
     currentUser = {

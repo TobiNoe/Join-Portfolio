@@ -36,7 +36,7 @@ async function registerUser() {
     signupbutton.disabled = true;
 
     let User = {
-      username: email,
+      username: name,
       email: email,
       password: password,
       repeated_password: repeated_password
