@@ -28,9 +28,10 @@ async function login() {
     currentUser = {
       email: user.email,
       userId: user.id,
-      name: user.name,
+      name: user.username,
       initials: initials
     };
+    console.log('currentUser :>> ', currentUser);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     window.location.href = "summary.html";
     

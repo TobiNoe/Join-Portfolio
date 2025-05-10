@@ -63,7 +63,7 @@ async function loginUser(data) {
 
   const responseData = await response.json();
 
-  if (response.status !== 201) {
+  if (response.status !== 200) {
     throw new Error(JSON.stringify(responseData));
   }
   
