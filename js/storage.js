@@ -65,7 +65,9 @@ async function loginUser(data) {
 
   if (response.status !== 201) {
     throw new Error(JSON.stringify(responseData));
-  } 
+  }
+  
+  return responseData;
 }
 
 /**

@@ -13,20 +13,38 @@ async function loginInit() {
  * Redirects to "summary.html" upon successful login.
  * @returns {void}
  */
-function login() {
+async function login() {
   const email = document.getElementById("login-input-email").value;
   const password = document.getElementById("input-password1").value;
-  
-  let user = users.find((u) => u.email == email && u.password == password);
-  if (user) {
+
+  let login = {
+    "email": email,
+    "password": password
+  }
+
+  try {
+    let user = await loginUser(login);
+    let initials = generateUserInitials(user.username);
     currentUser = {
       email: user.email,
       userId: user.id,
       name: user.name,
-      initials: user.initials,
+      initials: initials
     };
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     window.location.href = "summary.html";
+    
+  } catch (error) {
+    //document.getElementById("errorbox").innerHTML = error.message;
+    console.log('error :>> ', error.message);
+  }
+
+
+  /* let user = users.find((u) => u.email == email && u.password == password);
+  if (user) {
+    
+    erledigt!!!
+
   } else {
     let usernameExists = users.some((u) => u.email == email);
     let passwordCorrect = users.some(
@@ -40,7 +58,7 @@ function login() {
       document.getElementById("errorbox").innerHTML =
         "Wrong password. Please try again.";
     }
-  }
+  } */
 }
 
 /**
