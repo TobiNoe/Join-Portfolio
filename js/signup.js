@@ -4,7 +4,7 @@
  */
 async function signupInit() {
   //await loadUsers();
-  await loadContacts();
+  //await loadContacts();
 }
 
 let acceptChecked = false;
