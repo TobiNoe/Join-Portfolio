@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'django-insecure-kj=pf$1c*$kk36@iy-riv1m7=tnos@e25m36)2my(dn(9km+bj';
+//const STORAGE_KEY = 'django-insecure-kj=pf$1c*$kk36@iy-riv1m7=tnos@e25m36)2my(dn(9km+bj';
 const STORAGE_URL = "http://127.0.0.1:8000/api/";
 const SIGN_UP_URL = "http://127.0.0.1:8000/api/auth/registration/";
 const LOGIN_URL = "http://127.0.0.1:8000/api/auth/login/";
@@ -26,7 +26,8 @@ let allColors = [
 ];
 
 async function signUpUser(data) {
-  const url = `${SIGN_UP_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  //const url = `${SIGN_UP_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = SIGN_UP_URL;
 
   const response = await fetch(url, {
     method: 'POST',
