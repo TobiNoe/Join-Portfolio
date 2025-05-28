@@ -46,8 +46,7 @@ async function signUpUser(data) {
     throw new Error(JSON.stringify(responseData));
   } 
 
-  //console.log("Benutzer erfolgreich registriert :>> ", responseData);
-  //return responseData;
+  return responseData;
 }
 
 async function loginUser(data) {
