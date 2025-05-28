@@ -55,8 +55,9 @@ async function registerUser() {
 
     try {
       document.getElementById("errorbox").innerHTML = '';
-      await signUpUser(User);
-      await postItem("contacts", newContact);
+      let tokenResp = await signUpUser(User);
+      console.log('Token :>> ', tokenResp.token);
+      //await postItem("contacts", newContact);
       window.location.href = "index.html";
     } catch (error) {
       document.getElementById("errorbox").innerHTML = error.message;
