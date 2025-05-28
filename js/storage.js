@@ -51,7 +51,8 @@ async function signUpUser(data) {
 }
 
 async function loginUser(data) {
-  const url = `${LOGIN_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  //const url = `${LOGIN_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = LOGIN_URL;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -77,7 +78,8 @@ async function loginUser(data) {
  * @returns value of item
  */
 async function getItem(item) {
-  const url = `${STORAGE_URL}${item}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  //const url = `${STORAGE_URL}${item}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = `${STORAGE_URL}${item}/?format=json`;
   const response = await fetch(url, {
     headers: { 'Accept': 'application/json' }
   });
@@ -139,7 +141,7 @@ function loadCurrentUser() {
  * @returns value of key as json
  */
 async function postItem(item, data) {
-  const url = `${STORAGE_URL}${item}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = `${STORAGE_URL}${item}/?format=json`;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -166,7 +168,8 @@ async function postItem(item, data) {
  * @returns value of key as json
  */
 async function editItem(item, id, data) {
-  const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  //const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = `${STORAGE_URL}${item}/${id}/?format=json`;
 
   const response = await fetch(url, {
     method: 'PUT',
@@ -187,7 +190,8 @@ async function editItem(item, id, data) {
 }
 
 async function updateItem(item, id, data) {
-  const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  //const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = `${STORAGE_URL}${item}/${id}/?format=json`;
 
   const response = await fetch(url, {
     method: 'PATCH',
@@ -208,7 +212,8 @@ async function updateItem(item, id, data) {
 }
 
 async function deleteItem(item, Id) {
-  const url = `${STORAGE_URL}${item}/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  //const url = `${STORAGE_URL}${item}/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
+  const url = `${STORAGE_URL}${item}/${id}/?format=json`;
 
   const response = await fetch(url, {
     method: 'DELETE',
@@ -221,14 +226,3 @@ async function deleteItem(item, Id) {
     throw new Error(`Error: ${response.statusText}`);
   }
 }
-
-/**
- * loads the users from backend
- */
-/* async function loadUsers() {
-  try {
-    users = JSON.parse(await getItem("users"));
-  } catch (e) {
-    console.error("Loading error:", e);
-  }
-} */
