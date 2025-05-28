@@ -4,7 +4,7 @@
  */
 async function loginInit() {
   /*TODO: await loadUsers(); */
-  await loadContacts();
+  //await loadContacts();
 }
 
 /**
@@ -29,7 +29,8 @@ async function login() {
       email: user.email,
       userId: user.id,
       name: user.username,
-      initials: initials
+      initials: initials,
+      token: user.token
     };
     console.log('currentUser :>> ', currentUser);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -39,27 +40,6 @@ async function login() {
     //document.getElementById("errorbox").innerHTML = error.message;
     console.log('error :>> ', error.message);
   }
-
-
-  /* let user = users.find((u) => u.email == email && u.password == password);
-  if (user) {
-    
-    erledigt!!!
-
-  } else {
-    let usernameExists = users.some((u) => u.email == email);
-    let passwordCorrect = users.some(
-      (u) => u.email == email && u.password == password
-    );
-
-    if (!usernameExists) {
-      document.getElementById("errorbox").innerHTML =
-        "Wrong username. Please try again.";
-    } else if (usernameExists && !passwordCorrect) {
-      document.getElementById("errorbox").innerHTML =
-        "Wrong password. Please try again.";
-    }
-  } */
 }
 
 /**
