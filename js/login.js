@@ -37,8 +37,7 @@ async function login() {
     window.location.href = "summary.html";
     
   } catch (error) {
-    //document.getElementById("errorbox").innerHTML = error.message;
-    console.log('error :>> ', error.message);
+    document.getElementById("errorbox").innerHTML = error.message;
   }
 }
 
@@ -53,6 +52,7 @@ function guestLogin() {
     userId: "Guest",
     name: "Guest",
     initials: "G",
+    token: ""
   };
   //console.log(currentUser);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
