@@ -78,12 +78,18 @@ async function loginUser(data) {
  * @returns value of item
  */
 async function getItem(item) {
-  //const url = `${STORAGE_URL}${item}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/?format=json`;
+  const token = localStorage.getItem("authToken");
+
   const response = await fetch(url, {
-    headers: { 'Accept': 'application/json' }
+   headers: {
+      'Accept': 'application/json',
+      ...(token && { 'Authorization': `Token ${token}` })
+    }
   });
+
   const json = await response.json();
+  
   if (!response.ok) {
     throw new Error(`Error ${response.status}: Could not find data with key.`);
   }
