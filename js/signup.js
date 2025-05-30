@@ -21,13 +21,10 @@ async function registerUser() {
   let email = document.getElementById("signup-input-email").value;
   let password = document.getElementById("input-password2").value;
   let repeated_password = document.getElementById("input-password3").value;
-  //let userId = generateUserId();
   let initials = generateUserInitials(name);
   let i = Math.floor(Math.random() * allColors.length);
   let color = allColors[i];
 
-  //await loadContacts();
-  //await loadUsers();
   if (!acceptChecked) {
     document.getElementById("errorbox").innerHTML =
       "Please accept our Privacy Policy to sign up!";
@@ -45,19 +42,15 @@ async function registerUser() {
     let newContact = {
       name: name,
       email: email,
-      phone: "",
+      phone: 0,
       color: color,
       initials: initials
     };
 
-    console.log('User :>> ', User);
-    console.log('Contact :>> ', newContact);
-
     try {
       document.getElementById("errorbox").innerHTML = '';
-      let tokenResp = await signUpUser(User);
-      console.log('Token :>> ', tokenResp.token);
-      //await postItem("contacts", newContact);
+      await signUpUser(User);
+      await postItem("contacts", newContact);
       window.location.href = "index.html";
     } catch (error) {
       document.getElementById("errorbox").innerHTML = error.message;
