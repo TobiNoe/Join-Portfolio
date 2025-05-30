@@ -29,10 +29,9 @@ async function login() {
       email: user.email,
       userId: user.id,
       name: user.username,
-      initials: initials,
-      token: user.token
+      initials: initials
     };
-    console.log('currentUser :>> ', currentUser);
+    
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     window.location.href = "summary.html";
     
@@ -51,8 +50,7 @@ function guestLogin() {
     email: "Guest",
     userId: "Guest",
     name: "Guest",
-    initials: "G",
-    token: ""
+    initials: "G"
   };
   //console.log(currentUser);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
