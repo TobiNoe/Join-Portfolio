@@ -46,11 +46,11 @@ async function signUpUser(data) {
     throw new Error(JSON.stringify(responseData));
   } 
 
+  localStorage.setItem("authToken", responseData.token);
   return responseData;
 }
 
 async function loginUser(data) {
-  //const url = `${LOGIN_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = LOGIN_URL;
 
   const response = await fetch(url, {
@@ -68,6 +68,7 @@ async function loginUser(data) {
     throw new Error(JSON.stringify(responseData));
   }
   
+  localStorage.setItem("authToken", responseData.token);
   return responseData;
 }
 
@@ -141,12 +142,14 @@ function loadCurrentUser() {
  */
 async function postItem(item, data) {
   const url = `${STORAGE_URL}${item}/?format=json`;
+  const token = localStorage.getItem("authToken");
 
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      ...(token && { 'Authorization': `Token ${token}` })
     },
     body: JSON.stringify(data)
   });
@@ -154,10 +157,6 @@ async function postItem(item, data) {
   if (!response.ok) {
     throw new Error(`Error: ${response.statusText}`);
   }
-
-  //TODO: Optional: Wir können die Response als JSON parsen und zurückgeben
-  /* const json = await response.json(); */
-  /* return response; */
 }
 
 /**
