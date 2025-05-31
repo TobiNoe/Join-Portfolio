@@ -111,7 +111,6 @@ async function getItem(item) {
 async function loadContacts() {
   try {
     contacts = await getItem("contacts");
-    /* console.log('Kontakte:',contacts) */
   } catch (e) {
     console.error("Loading error:", e);
   }
