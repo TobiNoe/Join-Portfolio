@@ -173,12 +173,14 @@ async function postItem(item, data) {
 async function editItem(item, id, data) {
   //const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
+  const token = localStorage.getItem("authToken");
 
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      ...(token && { 'Authorization': `Token ${token}` })
     },
     body: JSON.stringify(data)
   });
@@ -195,12 +197,14 @@ async function editItem(item, id, data) {
 async function updateItem(item, id, data) {
   //const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
+  const token = localStorage.getItem("authToken");
 
   const response = await fetch(url, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      ...(token && { 'Authorization': `Token ${token}` })
     },
     body: JSON.stringify(data)
   });
