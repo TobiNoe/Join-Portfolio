@@ -34,7 +34,7 @@ async function renderContacts() {
     const contact = sortedContacts[i];
     const firstLetter = contact.name.charAt(0).toUpperCase();
 
-    if (currentUser.userId === contact.id) {
+    if (currentUser.email === contact.email) {
       you = "(You)";
     }
 
@@ -44,7 +44,7 @@ async function renderContacts() {
       contactlist.innerHTML += `<div class="contact-list-spacer">&nbsp;</div>`;
     }
 
-    contactlist.innerHTML += await renderContactsHTML(contact, you); //TODO:
+    contactlist.innerHTML += await renderContactsHTML(contact, you);
   }
 }
 
@@ -233,7 +233,7 @@ async function openAddContact() {
   document
     .getElementById("add-contact-card")
     .classList.remove("contact-d-none");
-  await loadUsers();
+  //await loadUsers();
   await loadContacts();
 }
 
