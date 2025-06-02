@@ -3,7 +3,7 @@ const STORAGE_URL = "http://127.0.0.1:8000/api/";
 const SIGN_UP_URL = "http://127.0.0.1:8000/api/auth/registration/";
 const LOGIN_URL = "http://127.0.0.1:8000/api/auth/login/";
 
-let users = [];
+let users = []; //kann weg
 let tasks = [];
 let contacts = [];
 let currentUser = [];
@@ -218,14 +218,16 @@ async function updateItem(item, id, data) {
   /* return response; */
 }
 
-async function deleteItem(item, Id) {
+async function deleteItem(item, id) {
   //const url = `${STORAGE_URL}${item}/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
+  const token = localStorage.getItem("authToken");
 
   const response = await fetch(url, {
     method: 'DELETE',
     headers: {
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      ...(token && { 'Authorization': `Token ${token}` })
     }
   });
 
