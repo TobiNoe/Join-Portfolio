@@ -271,6 +271,12 @@ async function addContact() {
   let color = allColors[i];
   let initials = generateUserInitials(name);
 
+  const emailExists = contacts.some(contact => contact.email.toLowerCase() === email.toLowerCase());
+  if (emailExists) {
+    alert("Ein Kontakt mit dieser E-Mail-Adresse existiert bereits.");
+    return;
+  }
+
   let newContact = {
     name: name,
     email: email,
