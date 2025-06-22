@@ -44,7 +44,8 @@ async function registerUser() {
       email: email,
       phone: 0,
       color: color,
-      initials: initials
+      initials: initials,
+      is_user: true
     };
 
     try {
