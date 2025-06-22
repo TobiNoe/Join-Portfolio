@@ -102,12 +102,6 @@ async function deleteContact(contactId) {
   const contactToDelete = contacts.find((c) => c.id === contactId);
 
   // Check if the contact is a user
-  /*  const isUser = users.some((user) => user.id === contactToDelete.id);
- 
-   if (isUser) {
-     alert("Cannot delete contact as it is a user.");
-     return;
-   } */
   if (contactToDelete.is_user === true) {
     alert("Cannot delete contact as it is a user.");
     return;
