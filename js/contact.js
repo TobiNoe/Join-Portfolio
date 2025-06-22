@@ -241,10 +241,20 @@ async function openAddContact() {
 }
 
 /**
+ * Clears the contact input form fields.
+ */
+function clearContactForm() {
+  document.getElementById("contact-input-name").value = "";
+  document.getElementById("contact-input-email").value = "";
+  document.getElementById("contact-input-phone").value = "";
+}
+
+/**
  * Closes the form for adding a new contact.
  * @returns {void}
  */
 function closeAddContact() {
+  clearContactForm()
   document
     .getElementById("add-contact-card")
     .classList.remove("contact-transform-in");
@@ -287,10 +297,6 @@ async function addContact() {
 
   await postItem("contacts", newContact);
   await loadContacts();
-
-  document.getElementById("contact-input-name").value = "";
-  document.getElementById("contact-input-email").value = "";
-  document.getElementById("contact-input-phone").value = "";
   closeAddContact();
   renderContacts();
 }
