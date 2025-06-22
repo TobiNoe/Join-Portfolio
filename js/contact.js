@@ -9,7 +9,6 @@ let contactListClicked = 0;
  */
 async function contactInit() {
   await includeHTML();
-  //await loadUsers(); //TODO:
   await loadTasks();
   loadCurrentUser();
   loadInitials();
@@ -103,9 +102,13 @@ async function deleteContact(contactId) {
   const contactToDelete = contacts.find((c) => c.id === contactId);
 
   // Check if the contact is a user
-  const isUser = users.some((user) => user.id === contactToDelete.id);
-
-  if (isUser) {
+  /*  const isUser = users.some((user) => user.id === contactToDelete.id);
+ 
+   if (isUser) {
+     alert("Cannot delete contact as it is a user.");
+     return;
+   } */
+  if (contactToDelete.is_user === true) {
     alert("Cannot delete contact as it is a user.");
     return;
   }
@@ -266,7 +269,6 @@ async function addContact() {
   let phone = document.getElementById("contact-input-phone").value;
   let i = Math.floor(Math.random() * allColors.length);
   let color = allColors[i];
-  /*TODO: let userId = generateUserId(); */
   let initials = generateUserInitials(name);
 
   let newContact = {
