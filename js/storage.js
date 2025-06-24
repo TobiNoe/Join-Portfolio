@@ -23,6 +23,17 @@ let allColors = [
   "#FFBB2B",
 ];
 
+/**
+ * Registers a new user and stores the authentication token.
+ *
+ * Sends user data to the signup endpoint and saves the returned token in localStorage.
+ *
+ * @async
+ * @function signUpUser
+ * @param {Object} data - User registration data.
+ * @returns {Promise<Object>} Server response containing user info and token.
+ * @throws {Error} If the registration fails (status !== 201).
+ */
 async function signUpUser(data) {
   const url = SIGN_UP_URL;
 
@@ -45,6 +56,17 @@ async function signUpUser(data) {
   return responseData;
 }
 
+/**
+ * Logs in a user and stores the authentication token.
+ *
+ * Sends login credentials to the backend and saves the returned token in localStorage.
+ *
+ * @async
+ * @function loginUser
+ * @param {Object} data - User login credentials.
+ * @returns {Promise<Object>} Server response containing user info and token.
+ * @throws {Error} If the login fails (status !== 200).
+ */
 async function loginUser(data) {
   const url = LOGIN_URL;
 
@@ -184,6 +206,18 @@ async function editItem(item, id, data) {
   }
 }
 
+/**
+ * Updates a specific item on the backend using PATCH.
+ *
+ * Sends updated data for a given item ID and includes an auth token if available.
+ *
+ * @async
+ * @function updateItem
+ * @param {string} item - Resource name (e.g. "contacts").
+ * @param {number} id - ID of the item to update.
+ * @param {Object} data - Data to be patched.
+ * @throws {Error} If the request fails.
+ */
 async function updateItem(item, id, data) {
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
   const token = localStorage.getItem("authToken");
@@ -203,6 +237,17 @@ async function updateItem(item, id, data) {
   }
 }
 
+/**
+ * Deletes a specific item from the backend by ID.
+ *
+ * Includes an auth token if available for authorization.
+ *
+ * @async
+ * @function deleteItem
+ * @param {string} item - Resource name (e.g. "contacts").
+ * @param {number} id - ID of the item to delete.
+ * @throws {Error} If the request fails.
+ */
 async function deleteItem(item, id) {
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
   const token = localStorage.getItem("authToken");
