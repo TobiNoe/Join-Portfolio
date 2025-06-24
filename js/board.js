@@ -148,7 +148,6 @@ async function boardDrop(category) {
     }
     
     let taskID = tasks[boardCurrentDraggedTask].id;
-    console.log('boardCurrentDraggedTask :>> ', boardCurrentDraggedTask);
        
     await updateItem('tasks', taskID, updateStatus);
     await boardReadTasks();

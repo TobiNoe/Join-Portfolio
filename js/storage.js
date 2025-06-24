@@ -1,9 +1,7 @@
-//const STORAGE_KEY = 'django-insecure-kj=pf$1c*$kk36@iy-riv1m7=tnos@e25m36)2my(dn(9km+bj';
 const STORAGE_URL = "http://127.0.0.1:8000/api/";
 const SIGN_UP_URL = "http://127.0.0.1:8000/api/auth/registration/";
 const LOGIN_URL = "http://127.0.0.1:8000/api/auth/login/";
 
-let users = []; //kann weg
 let tasks = [];
 let contacts = [];
 let currentUser = [];
@@ -26,7 +24,6 @@ let allColors = [
 ];
 
 async function signUpUser(data) {
-  //const url = `${SIGN_UP_URL}?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = SIGN_UP_URL;
 
   const response = await fetch(url, {
@@ -40,9 +37,7 @@ async function signUpUser(data) {
 
   const responseData = await response.json();
 
-  // Wenn der Status nicht 201 ist, dann handelt es sich um einen Fehlerfall.
   if (response.status !== 201) {
-    // Wirf den Fehler mit der Response, damit dieser im try-catch abgefangen werden kann.
     throw new Error(JSON.stringify(responseData));
   } 
 
@@ -171,7 +166,6 @@ async function postItem(item, data) {
  * @returns value of key as json
  */
 async function editItem(item, id, data) {
-  //const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
   const token = localStorage.getItem("authToken");
 
@@ -188,14 +182,9 @@ async function editItem(item, id, data) {
   if (!response.ok) {
     throw new Error(`Error: ${response.statusText}`);
   }
-
-  //TODO: Optional: Wir können die Response als JSON parsen und zurückgeben
-  /* const json = await response.json(); */
-  /* return response; */
 }
 
 async function updateItem(item, id, data) {
-  //const url = `${STORAGE_URL}${item}/${id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
   const token = localStorage.getItem("authToken");
 
@@ -212,14 +201,9 @@ async function updateItem(item, id, data) {
   if (!response.ok) {
     throw new Error(`Error: ${response.statusText}`);
   }
-
-  //TODO: Optional: Wir können die Response als JSON parsen und zurückgeben
-  /* const json = await response.json(); */
-  /* return response; */
 }
 
 async function deleteItem(item, id) {
-  //const url = `${STORAGE_URL}${item}/${Id}/?key=${encodeURIComponent(STORAGE_KEY)}&format=json`;
   const url = `${STORAGE_URL}${item}/${id}/?format=json`;
   const token = localStorage.getItem("authToken");
 

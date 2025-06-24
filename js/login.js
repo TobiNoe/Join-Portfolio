@@ -3,8 +3,6 @@
  * @returns {Promise<void>} A promise that resolves when the initialization is complete.
  */
 async function loginInit() {
-  /*TODO: await loadUsers(); */
-  //await loadContacts();
 }
 
 /**
@@ -52,7 +50,6 @@ function guestLogin() {
     name: "Guest",
     initials: "G"
   };
-  //console.log(currentUser);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   window.location.href = "summary.html";
 }
@@ -82,12 +79,10 @@ function togglePasswordVisibility(i) {
 function startAnimation() {
   // Check if the viewport width is under 550px
   if (window.innerWidth <= 550) {
-    //console.log("Mobile animation triggered");
     startAnimationMobile();
     return;
   }
 
-  //console.log("Desktop animation triggered");
   let logo = document.getElementById("logo");
   let initialTop = window.innerHeight / 2 - logo.clientHeight / 2;
   let initialLeft = window.innerWidth / 2 - logo.clientWidth / 2;

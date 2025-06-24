@@ -2,7 +2,6 @@ async function addTaskInit() {
   addTaskSetPrioMedium();
   addTaskGetToday();
   await loadTasks();
-  /*TODO:await loadUsers(); */
   await loadContacts();
   renderSubTasks();
   loadCurrentUser();
@@ -72,21 +71,6 @@ function addTaskToVar(param) {
  * and put it to backendstorage
  */
 async function addTaskSave() {
-  /* TODO:await loadTasks(); */
-  /* tasks.push({
-    id: Date.now(),
-    autor: currentUser["userId"],
-    title: titleAddTask,
-    description: descriptionAddTask,
-    assignedTo: assignedToAddTask,
-    dueDate: dueDateAddTask,
-    prio: addTaskPrio,
-    categoryTask: categoryAddTask,
-    subtask: subtaskAddTask,
-    status_subtask: statusSubtaskAddTask,
-    status: task_status,
-  }); */
-
   let newTask = {
     autor: currentUser["userId"],
     title: titleAddTask,
@@ -100,11 +84,7 @@ async function addTaskSave() {
     status: task_status,
   };
 
-  console.log('newTask :>> ', newTask);
   await postItem("tasks", newTask);
-
- /*  TODO:await setItem("tasks", JSON.stringify(tasks)); */
-
   addTaskSaveCompleted();
 }
 

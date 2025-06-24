@@ -3,8 +3,6 @@
  * @returns {Promise<void>} A promise that resolves when the initialization is complete.
  */
 async function signupInit() {
-  //await loadUsers();
-  //await loadContacts();
 }
 
 let acceptChecked = false;
@@ -73,15 +71,6 @@ function generateUserInitials(name) {
     .map((word) => word.charAt(0).toUpperCase())
     .join("");
 }
-
-/**
- * Generates a unique user ID based on the current timestamp.
- * @returns {number} The generated user ID.
- */
-/* function generateUserId() {
-  return Date.now();
-}
- */
 
 /**
  * Checks if the entered password matches the confirmed password.
